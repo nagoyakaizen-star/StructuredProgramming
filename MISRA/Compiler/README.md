@@ -3,8 +3,39 @@ https://en.wikipedia.org/wiki/Small-C
 
 
 https://gemini.google.com/app/e824e918832c9185?hl=ja
+
 Q1 Are they any compiler written pascal.
 A1 bye Gemini
+Yes, absolutely! In fact, Pascal has a rich history of being used to write its own compilers. When a compiler is written in the same language it compiles, it is called a **self-hosting compiler**.
+
+Several major Pascal compilers are written in Pascal (or its modern extension, Object Pascal):
+
+## 1. Free Pascal Compiler (FPC)
+
+This is the most prominent and widely-used open-source Pascal compiler active today.
+
+* **The Language:** It is completely written in Object Pascal.
+* **How it started:** It began in 1993 when a student named Florian Paul Klämpfl wrote a 16-bit compiler using Turbo Pascal. Within two years, the compiler became advanced enough to compile its own source code, making it a 32-bit self-hosting compiler.
+
+## 2. Delphi (Embarcadero)
+
+Delphi is the commercial successor to the legendary Turbo Pascal. Its modern compiler (dcc32, etc.) and the entire Integrated Development Environment (IDE) framework are heavily written in Object Pascal.
+
+## 3. Historical and Community Projects
+
+* **Turbo Pascal (Early versions):** While the lightning-fast early versions of Turbo Pascal for DOS were famously hand-crafted by Anders Hejlsberg in Assembly to maximize performance, later iterations and dialects shifted toward using Pascal itself.
+* **Pascal-P series (Pascal-P4 / Pascal-P5):** Historically, Niklaus Wirth (the creator of Pascal) and his team wrote a portable compiler called Pascal-P completely in Pascal. It generated an intermediate code (similar to Java bytecode) called P-Code. This was a massive milestone in computer science for bootstrapping compilers on new hardware.
+* **Modern indie compilers:** Projects like **Blaise** (a modern, zero-legacy Object Pascal compiler) and **Pascual** are actively developed open-source compilers written in Pascal that compile themselves.
+
+---
+
+> **Fun Fact:** Because Pascal syntax is clean, highly structured, and strictly typed, it was historically the go-to language for teaching compiler design in universities.
+
+*(Note: There are exceptions. For instance, **GNU Pascal (GPC)** was written in C/C++ because it was built as a frontend integrated directly into the GNU Compiler Collection).*
+
+A1-2
+
+
 Yes, absolutely! In fact, Pascal has a rich history of being used to write its own compilers—a process in computer science called **bootstrapping**.
 
 Because Pascal is a highly structured and strongly typed language, it is actually excellent for writing compilers.
