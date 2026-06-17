@@ -3,6 +3,7 @@ TEMPREG 0x200 PERMREG 0x400 PREMREG 0xc00
 yacc  -d ./cgram.y
 
 make[2]: yacc: No such file or directory
+
 make[2]: *** [Makefile:101: cgram.c] Error 127
 make[2]: Leaving directory '/pcc/cc/ccom'
 make[1]: *** [Makefile:12: all] Error 2
