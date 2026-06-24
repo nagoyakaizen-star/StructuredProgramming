@@ -161,3 +161,72 @@ package DefaultPackage {
 ```
 
 <img width="226" height="257" alt="image" src="https://github.com/user-attachments/assets/b7142815-927f-48a9-92f3-0f7ec801fadb" />
+
+Q2 次のようなパッケージ図をPlantUNK]で記述してください。
+
+なお、破線は無視してください。
+
+<img width="528" height="435" alt="image" src="https://github.com/user-attachments/assets/fae83f5d-49f7-4a82-9d5b-32777af7a795" />
+
+A2 by Gemini
+アップロードしていただいた画像をベースに、破線（①、②、③）を除外したシンプルなパッケージ図（コンポーネント図の要素を含む構造）をPlantUMLで記述します。
+
+画像の矢印の向き（`A -> B`、`B -> C`、`C -> D`、`A -> D`）をそのまま再現しています。
+
+### PlantUML コード
+
+```plantuml
+@startuml
+left to right direction
+
+package "x" {
+    [A]
+    [B]
+    [C]
+    [D]
+}
+
+A --> B
+B --> C
+C --> D
+A --> D
+
+@enduml
+
+```
+
+### ポイント
+
+* `left to right direction` を指定することで、画像のように左から右、そして全体的に循環・展開するような配置に近づけています。
+* パッケージ `x` の中に、4つの要素（A, B, C, D）を配置し、ご提示の画像通りの依存関係（矢印）を繋いでいます。
+
+ーーーーー
+
+<img width="445" height="193" alt="image" src="https://github.com/user-attachments/assets/dc1e3edc-b2fe-4849-bbcd-91153e030f17" />
+
+
+```plantuml
+@startuml
+left to right direction
+
+package "x" {
+    [A]
+    [B]
+    [C]
+}
+
+package "ｙ" {
+    [D]
+}
+A --> B
+B --> C
+C --> D
+A --> D
+
+@enduml
+
+```
+<img width="453" height="173" alt="image" src="https://github.com/user-attachments/assets/19867f54-8401-411c-86a7-43e38aface67" />
+
+
+
