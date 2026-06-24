@@ -122,7 +122,7 @@ a -down-> c
 
 ※上記のように `as エリアス名` を使うと、依存関係を書くときに日本語の長いパッケージ名を使わずに済むのでコードがすっきりします。
 
----plantuml
+```plantuml
 
 @startuml
 
@@ -138,9 +138,8 @@ package DefaultPackage {
     [D]
 }
 
-
 @enduml
----
+```
 
 
 <img width="203" height="273" alt="image" src="https://github.com/user-attachments/assets/13999aba-824f-44be-81c0-2e5173ce018c" />
