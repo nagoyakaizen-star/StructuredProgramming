@@ -143,3 +143,21 @@ package DefaultPackage {
 
 
 <img width="203" height="273" alt="image" src="https://github.com/user-attachments/assets/13999aba-824f-44be-81c0-2e5173ce018c" />
+
+
+
+```plantuml
+@startuml
+
+package DefaultPackage {
+
+  [A] -->   [B] 
+
+   [C] -->   [D]
+
+}
+
+@enduml
+```
+
+<img width="226" height="257" alt="image" src="https://github.com/user-attachments/assets/b7142815-927f-48a9-92f3-0f7ec801fadb" />
