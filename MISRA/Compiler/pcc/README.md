@@ -1,7 +1,11 @@
 apt update; apt –y upgrade; apt install vim git bison flex build-essential
+
 git clone https://github.com/PortableCC/pcc.git
+
 cd pcc
+
 ./configure
+
  make && make install
 
 root@3e9fa92ccab7:/home/source/pcc# make && make install
