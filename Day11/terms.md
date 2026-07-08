@@ -566,8 +566,32 @@ UML
 https://www.omg.org/spec/UML/2.5.1/PDF
 
 # 211
-状態遷移表:状態遷移表（じょうたいせんいひょう、State Transition Table）は、状態機械類（の遷移関数 T(scurrent, e) = (a, snext)）を、縦横の表にすることで、状態機械を記述したものである。scurrentはその機械の現在の状態（遷移元の状態）、eはイベント（状態機械への入力）、aはアクション（状態機械からの出力）、snextはその機械の次の状態（遷移先の状態）である。状態遷移図も状態機械の記述であるが、それぞれに利点と欠点とあるので、適宜使い分けられている。
+## 状態遷移表
+状態遷移表（じょうたいせんいひょう、State Transition Table）は、状態機械類（の遷移関数 T(scurrent, e) = (a, snext)）を、縦横の表にすることで、状態機械を記述したものである。scurrentはその機械の現在の状態（遷移元の状態）、eはイベント（状態機械への入力）、aはアクション（状態機械からの出力）、snextはその機械の次の状態（遷移先の状態）である。状態遷移図も状態機械の記述であるが、それぞれに利点と欠点とあるので、適宜使い分けられている。
 https://ja.wikipedia.org/wiki/%E7%8A%B6%E6%85%8B%E9%81%B7%E7%A7%BB%E8%A1%A8
+
+https://www.omg.org/spec/UML/1.4/PDF
+UML 1.4当時は、表形式についての定義がある。状態遷移表もこの一首。なぜかUML 2.xでは記述がない。
+
+3.5.1 Presentation Options
+Each appearance of a symbol for a class on a diagram or on different diagrams may 
+have its own presentation choices. For example, one symbol for a class may show the 
+attributes and operations and another symbol for the same class may suppress them. 
+Tools may provide style sheets attached either to individual symbols or to entire 
+diagrams. The style sheets would specify the presentation choices. (Style sheets would 
+be applicable to most kinds of symbols, not just classes.)
+Not all modeling information is presented most usefully in a graphical notation. Some 
+information is best presented in a textual or tabular format. For example, much detailed 
+programming information is best presented as text lists. The UML does not assume 
+that all of the information in a model will be expressed as diagrams; some of it may 
+only be available as tables. This document does not attempt to prescribe the format of 
+such tables or of the forms that are used to access them, because the underlying 
+information is adequately described in the UML metamodel and the responsibility for 
+presenting tabular information is a tool responsibility. It is assumed that hidden links 
+may exist from graphical items to tabular items
+仮訳
+同一クラスのシンボルが図上または異なる図上に表示される場合、それぞれに表示方法の選択肢が存在します。例えば、あるクラスのシンボルでは属性と操作を表示する一方、同じクラスの別のシンボルではそれらを非表示にすることができます。ツールによっては、個々のシンボルまたは図全体にスタイルシートを添付できる場合があります。スタイルシートは表示方法を指定します。（スタイルシートはクラスだけでなく、ほとんどの種類のシンボルに適用可能です。）すべてのモデリング情報がグラフィカル表記で最も効果的に表現できるとは限りません。一部の情報はテキスト形式または表形式で表現するのが最適です。例えば、詳細なプログラミング情報はテキストリストとして表現するのが最適です。UMLは、モデル内のすべての情報が図で表現されることを前提としていません。一部の情報は表形式でのみ利用可能な場合もあります。この文書は、そのような表の形式や、それらにアクセスするためのフォームの形式を規定しようとするものではありません。なぜなら、基となる情報はUMLメタモデルで適切に記述されており、表形式の情報を表示する責任はツールにあるからです。グラフィカルな項目から表形式の項目へは、非表示のリンクが存在する可能性があるものと想定されています。
+
 
 
 真理値表:ある倫理回路や論理式について、考えられるすべての入力の組み合わせと、対応する出力を一つの表に書き表したもの
