@@ -1847,5 +1847,173 @@ A4-2
 * **128. レストレスポンス（RESTful）**：RESTアーキテクチャの原則に則り、リソースの状態（URI）に対して適切にCRUD処理された結果として返却されるJSON等のデータ。
 
 
+## Q1 プロセス仕様書という用語を構造化モデリングという書籍で使っています。プロセス仕様書という用語を使う分野を３２示して、それぞれの意味をおしえてください。なおWikipedia以外のURLをそれぞれつけてください。
+A1 by gemini
+「プロセス仕様書（Process Specification）」という用語は、ご指摘の『構造化モデリング』や構造化システム分析（デマルコ手法など）においては、データフロー図（DFD）の最小単位（プリミティブプロセス）が実行する変換ロジックを記述したドキュメント（ミニ仕様書）を指します。
 
+しかし、この言葉はソフトウェア開発だけでなく、製造、化学、医療、ビジネス管理など、ありとあらゆる産業・分野で「特定の工程（プロセス）のインプット、処理手順、アウトプット、制御条件を定義した文書」として幅広く使われています。
+
+以下に、「プロセス仕様書」という用語が使われる32の分野と、それぞれの分野における意味、およびWikipedia以外の参照URLを示します。
+
+---
+
+### 1. 構造化システム開発（ソフトウェア工学）
+
+* **意味:** データフロー図（DFD）の最下層にある処理（プロセス）が、どのようなロジックでインプットデータをアウトプットデータに変換するかを、構造化英語や決定表（デシジョンテーブル）を用いて詳細に記述した文書。
+* **URL:** [https://web.wakayama-u.ac.jp/~makino/theses/SDbyOO.pdf](https://web.wakayama-u.ac.jp/~makino/theses/SDbyOO.pdf)
+
+### 2. 医薬品製造・創薬（GMP）
+
+* **意味:** 医薬品の製造工程において、原材料の配合比率、攪拌時間、温度管理、品質パラメータ、および製造実行システム（MES）への連携ロジックなどを厳格に定めた製法仕様書。
+* **URL:** [https://www.emerson.co.jp/ja/automation-systems/operations-business-management/deltav-mes/process-specification-management](https://www.emerson.co.jp/ja/automation-systems/operations-business-management/deltav-mes/process-specification-management)
+
+### 3. 品質マネジメントシステム（ISO 9001）
+
+* **意味:** 組織内の各業務プロセスが品質要求を満たすために、「誰が、何をインプットし、どう処理して、どのような成果物を出すか」を明確にした手順・基準を定義する文書。
+* **URL:** [https://www.jsa.or.jp/shikaku/management/iso9001/](https://www.google.com/search?q=https://www.jsa.or.jp/shikaku/management/iso9001/)
+
+### 4. 自動車部品製造（IATF 16949）
+
+* **意味:** 不良品率の極小化を求められる自動車産業において、各製造工程（プレス、溶接、組み立て等）の温度、圧力、タクトタイム、検査基準を定義した、工程管理計画（コントロールプラン）に紐づく作業仕様書。
+* **URL:** [https://www.jqa.jp/service_list/management/service/iatf16949/](https://www.jqa.jp/service_list/management/service/iatf16949/)
+
+### 5. 半導体製造・結晶成長
+
+* **意味:** ウェハの成膜、露光、エッチングなどの微細加工工程において、ガス流量、プラズマ出力、処理時間、温度などの物理・化学的パラメータをナノメートル単位で制御するためのプロセスフロー仕様書。
+* **URL:** [https://www.aist.go.jp/aist_j/press_release/pr2021/pr20210304/pr20210304.html](https://www.google.com/search?q=https://www.aist.go.jp/aist_j/press_release/pr2021/pr20210304/pr20210304.html)
+
+### 6. 化学プラント・プロセス工学
+
+* **意味:** 化学物質の合成や蒸留工程において、物質収支・エネルギー収支を基に、配管計装図（P&ID）や反応条件、緊急遮断のロジックを記述した基本設計・運転仕様書。
+* **URL:** [https://www.scej.org/](https://www.scej.org/)
+
+### 7. 食品安全管理（HACCP / ISO 22000）
+
+* **意味:** 食品の調理・加工工程において、加熱温度や冷却時間など、微生物汚染を防ぐための「重要管理点（CCP）」の許容限界や監視方法を定めた製造工程仕様書。
+* **URL:** [https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/haccp/index.html](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/haccp/index.html)
+
+### 8. ビジネスプロセス管理（BPM / 業務改革）
+
+* **意味:** 企業の業務フロー（BPMN等で可視化されたもの）において、各タスクの担当部署、使用システム、承認ルール、SLA（サービス品質保証）を詳細に落とし込んだ業務手順・プロセス定義書。
+* **URL:** [https://www.ipa.go.jp/archived/digital/it-architecture/agile/v6661q0000003ms4-att/000085817.pdf](https://www.google.com/search?q=https://www.ipa.go.jp/archived/digital/it-architecture/agile/v6661q0000003ms4-att/000085817.pdf)
+
+### 9. ITサービスマネジメント（ITIL）
+
+* **意味:** インシデント管理や変更管理などのIT運用プロセスにおいて、受付から、調査、エスカレーション、クローズに至るまでの手順と判断基準を定義したプロセス記述書。
+* **URL:** [https://www.itil-official.jp/](https://www.google.com/search?q=https://www.itil-official.jp/)
+
+### 10. プロジェクトマネジメント（PMBOK）
+
+* **意味:** スコープ定義やリスク管理など、プロジェクトを推進するための各管理プロセスが「どのように実行され、管理され、コントロールされるか」を定義したプロセス方法論の仕様書。
+* **URL:** [https://www.pmi-japan.org/](https://www.pmi-japan.org/)
+
+### 11. 医療機器製造（ISO 13485）
+
+* **意味:** 生体適合性や安全性が求められる医療機器の製造において、滅菌工程やクリーンルーム内での作業プロセス、トレーサビリティの確保手順を規定したプロセスバリデーション仕様書。
+* **URL:** [https://www.pmda.go.jp/review-services/re-inspections/gmp-qms/0001.html](https://www.google.com/search?q=https://www.pmda.go.jp/review-services/re-inspections/gmp-qms/0001.html)
+
+### 12. 航空宇宙工学（AS9100）
+
+* **意味:** 航空機部品や人工衛星の製造における特殊工程（熱処理、非破壊検査、接着など）について、欠陥を完全に排除するために作業手順やオペレーターの資格要件を厳格に定めたプロセス仕様書（SPS）。
+* **URL:** [https://www.jaqg.org/](https://www.google.com/search?q=https://www.jaqg.org/)
+
+### 13. サプライチェーン・マネジメント（SCORモデル）
+
+* **意味:** 調達、生産、配送、返品といったサプライチェーン全体の各プロセスについて、ベストプラクティス、ベンチマーク指標、必要とされるIT機能の要件を定義した標準プロセス仕様書。
+* **URL:** [https://www.ascm.org/](https://www.ascm.org/)
+
+### 14. 水処理・環境プラント工学
+
+* **意味:** 浄水場や下水処理場において、凝集剤の注入比率、沈殿時間、ろ過速度、および水質基準（pHや濁度）に応じた自動制御のアルゴリズムを定めたプロセス運転仕様書。
+* **URL:** [https://www.jswa.go.jp/](https://www.jswa.go.jp/)
+
+### 15. ソフトウェアテスト・QA（ISTQB）
+
+* **意味:** テスト計画からテストケース作成、実行、不具合報告、評価に至るテストプロセス全体の入力・出力基準や、進め方のルールを定義したテストプロセス仕様書。
+* **URL:** [https://jstqb.jp/](https://jstqb.jp/)
+
+### 16. コンプライアンス・内部統制（J-SOX）
+
+* **意味:** 財務報告の虚偽を防ぐため、売上計上や購買発注などの業務プロセスにおけるチェック体制、職務分掌、リスクに対するコントロール（統制活動）を記述した業務記述書（プロセス仕様書）。
+* **URL:** [https://www.fsa.go.jp/singi/singi_kigyou/toushin/20230407.html](https://www.google.com/search?q=https://www.fsa.go.jp/singi/singi_kigyou/toushin/20230407.html)
+
+### 17. 財務・決算プラクティス
+
+* **意味:** グループ企業の連結決算業務や決算開示において、データの収集、相殺消去、検証、仕訳承認といった一連のタスクを正確かつ期限内に終えるための決算プロセス仕様書。
+* **URL:** [https://www.asb.or.jp/jp/](https://www.google.com/search?q=https://www.asb.or.jp/jp/)
+
+### 18. 機械加工・金属成形
+
+* **意味:** マシニングセンタ等の工作機械による切削・削り出し工程において、NCプログラム、刃具選定、回転数、送り速度、冷却液の噴射条件などを指定した加工プロセス仕様書。
+* **URL:** [https://www.jsme.or.jp/](https://www.jsme.or.jp/)
+
+### 19. 建設・土木施工管理
+
+* **意味:** コンクリートの打設や基礎杭の打ち込みなど、構造物の強度に直結する重要な施工プロセスにおいて、材料の配合、養生期間、品質検査のタイミングを定義した施工プロセス仕様書。
+* **URL:** [https://www.mlit.go.jp/totokeikin/chousa/kensetukouji.html](https://www.google.com/search?q=https://www.mlit.go.jp/totokeikin/chousa/kensetukouji.html)
+
+### 20. 自然言語処理（NLP）/ テキストマイニング
+
+* **意味:** 大量テキストの解析（パイプライン）において、トークン化、構文解析、エンティティ抽出などの各データ前処理プロセスがどのようなルールで連動するかを定義した仕様書。
+* **URL:** [https://www.anlp.jp/](https://www.anlp.jp/)
+
+### 21. 人事・労務管理（オンボーディング）
+
+* **意味:** 新入社員の受け入れから、内定通知、アカウント発行、研修、配属に至る一連の手順において、体験の均一化と労務リスクの回避を目的に定められた人事プロセス仕様書。
+* **URL:** [https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudou基準/index.html](https://www.google.com/search?q=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudou%E5%9F%BA%E6%BA%96/index.html)
+
+### 22. 顧客サポート・コンタクトセンター運用
+
+* **意味:** 顧客からのクレームやテクニカルな問い合わせに対し、一次対応、ナレッジ検索、二次エスカレーション、対応記録の格納まで、オペレーターが遵守すべき応答プロセス仕様書（SOP）。
+* **URL:** [https://www.ccaj.or.jp/](https://www.ccaj.or.jp/)
+
+### 23. 情報セキュリティ・CSIRT（インシデント対応）
+
+* **意味:** サイバー攻撃や情報漏洩が発生した際、検知、トリアージ（優先度判定）、封じ込め、復旧、法的報告までのタイムラインと対応手順を定義したインシデントレスポンス・プロセス仕様書。
+* **URL:** [https://www.jpcert.or.jp/](https://www.jpcert.or.jp/)
+
+### 24. データサイエンス・MLOps（機械学習運用）
+
+* **意味:** 機械学習モデルの構築において、データの収集・アノテーションから、特徴量エンジニアリング、モデル訓練、デプロイ、評価までの実験・運用サイクルを定義したパイプラインプロセス仕様書。
+* **URL:** [https://www.ipa.go.jp/safety/reproducibility/index.html](https://www.google.com/search?q=https://www.ipa.go.jp/safety/reproducibility/index.html)
+
+### 25. 物流・倉庫管理（WMS運用）
+
+* **意味:** ロジスティクスセンターにおける入庫、ロケーション配置、ピッキング、梱包、出庫検品といった物理的なモノの流れとシステムへのデータ入力を同期させるための物流プロセス仕様書。
+* **URL:** [https://www.mlit.go.jp/seisakutokatsu/freight/index.html](https://www.mlit.go.jp/seisakutokatsu/freight/index.html)
+
+### 26. 印刷・プレプレス工程
+
+* **意味:** DTPデザインデータを実際の印刷機に送る前段階（プレプレス）において、カラーマネジメント（ICCプロファイル適用）、トラッピング処理、網点（スクリーニング）制御などのデジタル処理プロセスを定めた仕様書。
+* **URL:** [https://www.jfpi.or.jp/](https://www.jfpi.or.jp/)
+
+### 27. アパレル・繊維製品製造
+
+* **意味:** パターン（型紙）配置、自動裁断（CAM）、縫製、洗い加工、検針といった、衣服が量産されるまでの各工程における機械の設定値や、縫い代・ステッチのピッチを定めた縫製プロセス仕様書。
+* **URL:** [https://www.meti.go.jp/policy/mono_info_service/mono/fiber/index.html](https://www.meti.go.jp/policy/mono_info_service/mono/fiber/index.html)
+
+### 28. 鉄鋼・冶金（やきん）プロセス
+
+* **意味:** 高炉での製鉄、転炉での精錬、連続鋳造、圧延工程において、鉄鋼のグレード（強度や延性）をコントロールするために炭素量や冷却速度、熱処理プロセスを秒単位で制御する仕様書。
+* **URL:** [https://www.isij.or.jp/](https://www.isij.or.jp/)
+
+### 29. 鉱物資源採掘・選鉱
+
+* **意味:** 採掘した原鉱石から目的の金属を取り出すため、破砕、浮遊選鉱（薬剤による分離）、脱水などの化学的・物理的処理プロセスにおける処理量や薬剤投入量を定めた選鉱プロセス仕様書。
+* **URL:** [https://www.jogmec.go.jp/](https://www.jogmec.go.jp/)
+
+### 30. アジャイル・スクラム開発
+
+* **意味:** スプリントプランニング、デイリースクラム、スプリントレビュー、レトロスペクティブという一連のタイムボックス活動における、チームの動き方や「完了の定義（DoD）」をまとめたスクラムプロセス仕様書（ワーキングアグリーメント）。
+* **URL:** [https://www.scrumalliance.org/](https://www.scrumalliance.org/)
+
+### 31. エネルギー管理（ISO 50001）
+
+* **意味:** 工場やビルにおけるエネルギー効率を最適化するため、主要なエネルギー使用設備（ボイラーや空調）の運転条件、計測プロセス、省エネアクションのトリガーを定めたエネルギー管理プロセス仕様書。
+* **URL:** [https://www.eccj.or.jp/](https://www.eccj.or.jp/)
+
+### 32. 組織変更・チェンジマネジメント
+
+* **意味:** 企業が大規模なシステム刷新や組織改編を行う際、社員の抵抗を和らげ定着させるために、変革の告知、教育訓練、フィードバック収集、評価をどのようなタイムラインで行うかを定義した変革プロセス仕様書。
+* **URL:** [https://www.creativeorganizing.co.jp/](https://www.google.com/search?q=https://www.creativeorganizing.co.jp/) (日本チェンジマネジメント協会)
 
