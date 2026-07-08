@@ -2,6 +2,44 @@ wikipediaの本文は引用しない。URLの中身はOK.
 
 仕様のURLもWikipedia以外。
 
+はい、ISO/IEC/IEEE 24765（Systems and software engineering — Vocabulary）に**直接対応する（翻訳・一致した）JIS規格は現時点では存在しません。**
+
+ただし、この規格の役割である「システム及びソフトウェアエンジニアリングの**用語集（語彙）**」という観点において、一部の共通する定義や、関連性の高いJIS規格はいくつか存在します。
+
+JISにおける関連情報を整理しました。
+
+### 1. JISに存在しない理由
+
+ISO/IEC/IEEE 24765は、システム・ソフトウェア工学の数千もの膨大な用語を定義した辞書的な巨大規格です。変化の激しいIT用語を日本語に翻訳してJIS化し、定期的に維持管理するコストが非常に大きいため、丸ごとJIS化（翻訳）される動きにはなっていません。
+
+### 2. 用語の「部分的な共通・関連」があるJIS規格
+
+ISO/IEC/IEEE 24765のベース（根拠）となっている主要なプロセス規格（ISO/IEC/IEEE 15288や12207など）はJIS化されているため、それらのJIS規格の中で個々に用語が定義されています。
+
+* **JIS X 0160（ISO/IEC/IEEE 12207対応）**
+* ソフトウェアライフサイクルプロセス
+
+
+* **JIS X 0170（ISO/IEC/IEEE 15288対応）**
+* システムライフサイクルプロセス
+
+
+
+これらの規格の中にある用語の定義は、ISO/IEC/IEEE 24765の定義と整合性が取れています。
+
+### 3. かつて存在した「IT用語集」のJIS（現在は廃止）
+
+過去には **JIS X 0001** 〜 **JIS X 0032** という「情報処理用語」の膨大なJIS規格群が存在しました（ISO/IEC 2382シリーズに相当）。しかし、技術の進歩に伴う用語の変化に追いつかなくなったことなどから、**現在はすべて廃止**されています。
+
+---
+
+**結論として**
+公式な日本語の用語集として参照できるJISはないため、正確な定義を確認したい場合は、現状は原著である **ISO/IEC/IEEE 24765** を直接参照するか、ISOが提供している無料のオンライン用語検索データベース「**ISO Online Browsing Platform (OBP)**」等で検索するのが確実です。
+
+## Q1 ISO/IEC/IEEE 24765 は該当JISはありますか。
+A1 by Gemini
+
+
 # 209
 Control Flow Diagram
 -> CFD
@@ -270,9 +308,55 @@ https://www.tetras.uitec.jeed.go.jp/files/kankoubutu/a-135-04.pdf?utm_source=cha
 エフェクト
 システムが処理を行った結果、外部に与える影響や結果
 
-カップリング
+## カップリング
 コンピュータープログラミングで用いられる（機械よりは）人間寄りの尺度。ソフトウェア測定法の一種。利用者またはメンテナンスをする者にとって対象を利用、保守しやすいように対象の内容が整理、分割できているかどうかを、その状態によって段階に分けて表現する。
 https://ja.wikipedia.org/wiki/%E7%B5%90%E5%90%88%E5%BA%A6
+
+3.1839
+hybrid coupling
+
+1. type of coupling in which different subsets of the range of values that a data item can assume are used for
+2. different and unrelated purposes in different software modules
+cf. common-environment coupling, content coupling, control coupling, data coupling, pathological coupling
+
+3.2840
+pathological coupling
+
+1. type of coupling in which one software module affects or depends upon the internal implementation of another
+cf. common-environment coupling, content coupling, control coupling, data coupling, hybrid coupling
+
+3.654
+common-environment coupling
+
+common coupling
+1. type of coupling in which two software modules access a common data area
+cf. content coupling, control coupling, data coupling, hybrid coupling, pathological coupling
+
+3.816
+content coupling
+
+1. type of coupling in which some or all of the contents of one software module are included in the contents of
+another module
+cf. common-environment coupling, control coupling, data coupling, hybrid coupling, pathological coupling
+
+3.853
+control coupling
+1. type of coupling in which one software module communicates information to another module for the explicit
+purpose of influencing the latter module's execution
+cf. common-environment coupling, content coupling, data coupling, hybrid coupling, pathological coupling
+
+3.919
+coupling
+
+1. manner and degree of interdependence between software modules
+2. strength of the relationships between modules.
+3. measure of how closely connected two routines or modules are
+4. in software design, a measure of the interdependence among modules in a computer program [ISO/IEC TR 19759:2016 Software Engineering — Guide
+to the Software Engineering Body of Knowledge (SWEBOK) 2.1.4,
+cf. cohesion
+Note 1 to entry: Types include common-environment coupling, content coupling, control coupling, data coupling, hybrid
+coupling, and pathological coupling.
+
 
 組み合わせコントロール
 ？？
