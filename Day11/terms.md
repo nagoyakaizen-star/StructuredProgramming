@@ -26,6 +26,7 @@ P-SEC
 -> DFD
 
 ディシジョンテーブル
+-> decision table
 
 プロセス仕様書
 
@@ -45,7 +46,7 @@ Information technology — Object Management Group Architecture-Driven Moderniza
 Discovery Meta-Model (KDM), 4] 3. set of source code files under version control that can be manipulated together
 as one4. collection of both data and the routines that act on it
 Note 1 to entry: The terms 'module', 'component,' and 'unit' are often used interchangeably or defined to be subelements
-
+another in different ways depending upon the context. The relationship of these terms is not yet standardized.
 
 モジュール仕様書
 
