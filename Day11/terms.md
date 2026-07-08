@@ -1,5 +1,5 @@
 wikipediaの本文は引用しない。URLの中身はOK.
-
+仕様のURLもWikipedia以外。
 
 # 209
 Control Flow Diagram
