@@ -32,6 +32,20 @@ P-SEC
 非機能要件リスト
 
 モジュール
+https://www.omg.org/spec/UML/2.5.1/PDF
+定義なし、モジュール図定義なし
+UMLでは、Package、
+https://www.iso.org/standard/71952.html
+3.2508
+module
+1. program unit that is discrete and identifiable with respect to compiling, combining with other units, and loading
+[ISO/IEC 19506:2012 Information technology — Object Management Group Architecture-Driven Modernization
+(ADM) — Knowledge Discovery Meta-Model (KDM), 4] 2. logically separable part of a program [ISO/IEC 19506:2012
+Information technology — Object Management Group Architecture-Driven Modernization (ADM) — Knowledge
+Discovery Meta-Model (KDM), 4] 3. set of source code files under version control that can be manipulated together
+as one4. collection of both data and the routines that act on it
+Note 1 to entry: The terms 'module', 'component,' and 'unit' are often used interchangeably or defined to be subelements
+
 
 モジュール仕様書
 
