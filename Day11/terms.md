@@ -21,85 +21,209 @@ Imaz Perbay
 
 P-SEC
 
+## イベント
+organization, or a user
+3.1484
+event
+
+1. occurrence of a particular set of circumstances [ISO/IEC 16085:2006 Systems and software engineering — Life
+cycle processes — Risk management, 3.2] 2. external or internal stimulus used for synchronization purposes 3.
+change detectable by the subject software [IEEE 1175.3-2004 IEEE Standard for CASE Tool Interconnections -
+Reference Model for Specifying Software Behavior] 4. fact that an action has taken place [ISO/IEC 10746-2:2009
+Information technology — Open Distributed Processing — Reference Model: Foundations, 8.4] 5. singular moment in
+time at which some perceptible phenomenological change (energy, matter, or information) occurs at the port of a
+unit [IEEE 1175.4-2008 IEEE Standard for CASE Tool Interconnections - Reference Model for Specifying System
+Behavior, 3.12]
+Note 1 to entry: The event can be certain or uncertain. The event can be a single occurrence or a series of occurrences. The
+probability associated with the event can be estimated for a given period of time. An event can be an external interrupt, a timer
+expiration, an internal signal, or an internal message.
+[SOURCE: ISO Guide 73:2009, definition 3.6.1.3]
+
+3.1485
+event history
+1. object representing significant actions [ISO/IEC 10746-3:2009 Information technology — Open Distributed
+Processing — Reference Model: Architecture, 13.1.1.1]
+3.1486
+event sequence analysis
+1. per
+3.1487
+event sequence diagram
+1. diagram that identifies the sequence of tasks required to process an external event
+3.1488
+event sink
+1. operation interface consuming announcements carrying notifications of typed events [ISO/IEC 10746-3:2009
+Information technology — Open Distributed Processing — Reference Model: Architecture, 7.1.16] 2. named connection
+point into which events of a specified type can be pushed [ISO/IEC 19500-3:2012 Information technology — Object
+Management Group — Common Architecture Request Broker Architecture (CORBA) — Part 3: Components, 4.1]
+cf. consumer
+
+
+3.1489
+event source
+1. operation interface originating announcements carrying notifications of typed events [ISO/IEC 10746-3:2009
+Information technology — Open Distributed Processing — Reference Model: Architecture, 7.1.16] 2. named connection
+point that emits events of a specified type to one or more interested event consumers, or to an event channel
+[ISO/IEC 19500-3:2012 Information technology — Object Management Group — Common Architecture Request
+Broker Architecture (CORBA) — Part 3: Components, 4.1]
+3.1490
+event synchronization
+1. control of task activation by means of signals
+Note 1 to entry: Three types of event synchronization are possible: external interrupts, timer expiration, and internal signals
+from other tasks.
+3.1491
+event trace
+1. time-ordered description of each external input and the time at which it occurred
+3.1492
+event-sequencing logic
+1. description of how a task responds to each of its message or event inputs
+Note 1 to entry: in particular, what output is generated as a result of each input.
+3.1493
+EventItem
+1. occurrence of an EventType [IEEE 1175.3-2004 IEEE Standard for CASE Tool Interconnections - Reference Model
+for Specifying Software Behavior]
+3.1494
+EventType
+1. set of possible times or time periods at which an Event can occur [IEEE 1175.3-2004 IEEE Standard for CASE Tool
+Interconnections - Reference Model for Specifying Software Behavior]
+
+
 分野	「イベント」の意味	例
+
 日常	行事・催し物	夏祭り、コンサート、スポーツ大会
+
 辞書	出来事、事件、事象	「予期しないイベントが発生した」＝予期しない出来事が起こった
+
 英語（Event）	出来事、出来事の発生、催し	A major event happened yesterday.（昨日、大きな出来事があった。）
+
 ビジネス	企業活動として企画・実施する催しやプロモーション	展示会、セミナー、新製品発表会、キャンペーン
+
 IT	システムやプログラムに何らかの処理を行わせるきっかけとなる出来事	ボタンが押された、ファイルが保存された、通信を受信した
+
 要求モデリング	システムやアクターのアクションを引き起こす出来事	「注文ボタンが押された」→注文処理を開始する
+
 プログラミング	プログラムが監視している出来事	マウスクリック、キー入力、タイマー満了、画面タップ
+
 ネットワーク	通信機器やサーバーで発生した出来事	接続確立、切断、エラー発生
+
 セキュリティ	ログに記録される重要な出来事	ログイン成功、ログイン失敗、不正アクセス検知
 
-
-
 用語	日本語	意味
+
 Event	イベント	システムの動作のきっかけとなる出来事・事象
+
 External Event	外部イベント	ユーザーや他システムなど外部から発生するイベント
+
 Internal Event	内部イベント	システム内部で発生するイベント
+
 Time Event	時間イベント	時刻やタイマーによって発生するイベント
+
 Signal Event	シグナルイベント	他の処理やタスクから送られる通知によるイベント
+
 Interrupt Event	割り込みイベント	ハードウェアなどからの割り込みで発生するイベント
+
 Event History	イベント履歴	発生したイベントを記録した履歴
+
 Event Sequence	イベント系列	イベントが発生する順番
+
 Event Sequence Analysis	イベント系列分析	イベントの発生順序を分析すること
+
 Event Sequence Diagram	イベント系列図	イベントと処理の流れを表した図
+
 Event Trace	イベントトレース	時系列にイベントを記録したもの
+
 Event Source	イベントソース	イベントを発生させる側
+
 Event Sink	イベントシンク	イベントを受け取る側
+
 Event Consumer	イベントコンシューマ	イベントを利用するプログラム
+
 Event Producer	イベントプロデューサ	イベントを生成するプログラム
+
 Event Channel	イベントチャネル	イベントを伝達する経路
+
 Event Notification	イベント通知	イベントが起こったことを知らせること
+
 Event Handler	イベントハンドラ	イベント発生時に実行される処理
+
 Event Listener	イベントリスナー	イベントの発生を監視する仕組み
+
 Event Queue	イベントキュー	発生したイベントを一時的に並べておく場所
+
 Event Loop	イベントループ	イベントを待ち続け、順番に処理する仕組み
+
 Event Synchronization	イベント同期	イベントを利用して処理の実行タイミングを合わせること
+
 Event-Sequencing Logic	イベント順序ロジック	イベントごとの処理順序を決める仕組み
+
 Event Type	イベント型	イベントの種類（クリック、入力など）
+
 Event Item	イベント項目	発生した個々のイベント
+
 イベントには大きく4つの分類があります
 
 これらを整理すると、実は次の4グループに分けられます。
 
 ① 発生するイベント
+
 Event
+
 External Event
+
 Internal Event
+
 Time Event
+
 Signal Event
+
 Interrupt Event
+
 
 「何が起こったか」を表します。
 
 ② イベントを扱う仕組み
+
 Event Source
+
 Event Sink
+
 Event Producer
+
 Event Consumer
+
 Event Channel
+
 Event Handler
+
 Event Listener
+
 Event Queue
+
 Event Loop
 
 「イベントを誰が発生させ、誰が受け取り、どう処理するか」を表します。
 
 ③ イベントを記録・分析するもの
+
 Event History
+
 Event Trace
+
 Event Sequence
+
 Event Sequence Analysis
+
 Event Sequence Diagram
 
 「イベントを記録したり、分析したりするもの」です。
 
 ④ イベントの性質
+
 Event Type
+
 Event Item
+
 Event Synchronization
+
 Event-Sequencing Logic
 
 「イベントそのものの種類や制御方法」を表します。
@@ -107,18 +231,22 @@ Event-Sequencing Logic
 もし現在学習しているのが要求モデリングであれば、特に重要なのは次の用語です。
 
 Event（イベント）
+
 External Event（外部イベント）
+
 Time Event（時間イベント）
+
 Internal Event（内部イベント）
+
 Event Sequence（イベント系列）
+
 Event Sequence Diagram（イベント系列図）
 
 これらは要求分析やシステム分析で頻繁に登場する基本概念です。
 
 このISO用語集には約2万語近い専門用語が掲載されていますが、「Action」や「Event」のような重要用語についても、今回のように関連語までまとめて理解すると、要求モデリングや設計の全体像がつかみやすくなります。
 
-
-イベントリスト
+## イベントリスト
 システムの外部で発生する出来事（イベント）を一覧にしたもの
 
 イベントリストには、対象とするシステムの外部で発生したイベント（事象）のうち、いつ発生す
