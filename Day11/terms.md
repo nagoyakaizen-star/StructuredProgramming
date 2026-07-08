@@ -1,3 +1,6 @@
+wikipediaの本文は引用しない。URLの中身はOK.
+
+
 # 209
 Control Flow Diagram
 -> CFD
