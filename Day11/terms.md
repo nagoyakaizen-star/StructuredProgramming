@@ -408,17 +408,17 @@ A1 by Gemini
 複数の条件と、それによって決定づけられる動作（行動）を整理するためのツールです。別名「デシジョンテーブル（Decision tables）」とも呼ばれています。
 https://ssaits.jp/promapedia/method/decision-tables.html#index_id0
 
-構造化分析
+## 構造化分析
 1970年代後半にトム・デマルコによって提案され、ソフトウェア開発やシステム設計で広く用いられる手法です。大きな問題を小さな問題に分割して解決する「分割統治法」を基本概念としており、システムの要求や機能を階層的に整理することを目的としています
 https://momo-chienoki.com/SoftwareDesign/StructuredAnalysisAndDesignTechnique/
 
-構造化設計
+## 構造化設計
 構造化設計とは、大きな機能を細分化し、小さな機能の有機的な集合にする設計手法のことです。
 この設計手法は1980年代から広く用いられるようになり、大規模化するシステム開発へ対応する常套手法となりました。
 設計において、プログラム全体を複数の部品に分割する「モジュール分割」という概念が中心的な役割を果たします。
 https://momo-chienoki.com/SoftwareDesign/StructuredAnalysisAndDesignTechnique/
 
-構造図
+## 構造図
 システムの静的な構造を表現
 https://johostudy.com/uml/#toc2
 
@@ -553,17 +553,64 @@ A1 by Gemini
 8. **Semantic Scholar (ソフトウェア工学における凝集度メトリクスの変遷・レビュー論文)**
 * [https://www.semanticscholar.org/](https://www.semanticscholar.org/)
 
-# コンテキストダイアグラム
+## コンテキストダイアグラム
 ビジネスのプロセスや使われる装置、コンピュータ・システムなどのビジネス・システムに対して、ユーザーやその他のシステムがどのように相互作用しているのかを表した図解表現のことです。
 https://ssaits.jp/promapedia/method/context-diagrams.html#index_id0
 
 
-状態遷移図
+## 状態遷移図
 システムがとりうる「状態」と、それらの間をつなぐ「遷移」の関係を視覚的に表現する図です。あるイベントや条件が発生したとき、システムがどのように状態を変化させるかを矢印で示します。
 https://agest.co.jp/column/2025-05-28/
 
+UML
+https://www.omg.org/spec/UML/2.5.1/PDF
+
+# 211
+状態遷移表:状態遷移表（じょうたいせんいひょう、State Transition Table）は、状態機械類（の遷移関数 T(scurrent, e) = (a, snext)）を、縦横の表にすることで、状態機械を記述したものである。scurrentはその機械の現在の状態（遷移元の状態）、eはイベント（状態機械への入力）、aはアクション（状態機械からの出力）、snextはその機械の次の状態（遷移先の状態）である。状態遷移図も状態機械の記述であるが、それぞれに利点と欠点とあるので、適宜使い分けられている。
+https://ja.wikipedia.org/wiki/%E7%8A%B6%E6%85%8B%E9%81%B7%E7%A7%BB%E8%A1%A8
 
 
+真理値表:ある倫理回路や論理式について、考えられるすべての入力の組み合わせと、対応する出力を一つの表に書き表したもの
+https://e-words.jp/w/%E7%9C%9F%E7%90%86%E5%80%A4%E8%A1%A8.html
+
+
+スティミュラス;スティミュラスとは、発生したイベント（事象）によって発生する、システムに刺激を与えるための情報入力である。サービスは、システム外部・内部で発生する様々なイベントから届くスティミュラスにより開始される。サービスに関係するイベントとスティミュラスを明らかにすることがイベント分析であり、分析結果はイベントリストとして表現する
+https://www.mesw.co.jp/business/report/pdf/mss_29_03.pdf
+
+
+制御仕様書:端的に意味を示しているものがぱっと見つからなかったため制御仕様書について書かれているurlを記載します
+https://www.bgarage.co.jp/news/1871/
+
+
+制御バー:制御の集約場所を表します。
+http://shikou-sakugo.cocolog-nifty.com/blog/2011/08/action-4326.html
+
+
+制御フローダイアグラム:「制御フローグラフ」ばかりで制御フローダイアグラムは見つけられなかった。control flow diagramではヒットしたものがあるのでそのurlを記載します。
+https://www.scribd.com/document/132370266/Mission-Flow-Diagram
+
+
+順次コントロール:順次制御、順次構造、シーケンス制御などが出てきたが順次コントロールそのままでは出てこなかった
+
+
+タイミング仕様書:タイミングチャート？
+
+
+ターミネータ:対象のシステムの外にある利用者や活動・データなどを示します。
+https://www.sparxsystems.jp/help/17.0/data_flow_diagrams.html
+
+
+データ辞書とは:「データディクショナリ」のこと。用語の中身としてはそのシステムで扱うデータの定義（名前とか意味とか）をまとめた一覧のことです。
+https://wa3.i-3-i.info/word15570.html
+
+
+
+データストア:「データを溜めておく場所」に該当する何か
+https://wa3.i-3-i.info/word16851.html
+
+
+データディクショナリ:そのシステムで扱うデータの定義（名前とか意味とか）をまとめた一覧のこと
+https://wa3.i-3-i.info/word15569.html
 
 # 212
 データフローダイアグラム
