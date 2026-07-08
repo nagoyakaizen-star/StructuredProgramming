@@ -594,23 +594,139 @@ may exist from graphical items to tabular items
 
 
 
-真理値表:ある倫理回路や論理式について、考えられるすべての入力の組み合わせと、対応する出力を一つの表に書き表したもの
+## 真理値表
+:ある倫理回路や論理式について、考えられるすべての入力の組み合わせと、対応する出力を一つの表に書き表したもの
 https://e-words.jp/w/%E7%9C%9F%E7%90%86%E5%80%A4%E8%A1%A8.html
 
 
-スティミュラス;スティミュラスとは、発生したイベント（事象）によって発生する、システムに刺激を与えるための情報入力である。サービスは、システム外部・内部で発生する様々なイベントから届くスティミュラスにより開始される。サービスに関係するイベントとスティミュラスを明らかにすることがイベント分析であり、分析結果はイベントリストとして表現する
+## スティミュラス
+;スティミュラスとは、発生したイベント（事象）によって発生する、システムに刺激を与えるための情報入力である。サービスは、システム外部・内部で発生する様々なイベントから届くスティミュラスにより開始される。サービスに関係するイベントとスティミュラスを明らかにすることがイベント分析であり、分析結果はイベントリストとして表現する
 https://www.mesw.co.jp/business/report/pdf/mss_29_03.pdf
 
 
-制御仕様書:端的に意味を示しているものがぱっと見つからなかったため制御仕様書について書かれているurlを記載します
+## 制御仕様書
+:端的に意味を示しているものがぱっと見つからなかったため制御仕様書について書かれているurlを記載します
 https://www.bgarage.co.jp/news/1871/
 
 
-制御バー:制御の集約場所を表します。
+## 制御バー
+:制御の集約場所を表します。
 http://shikou-sakugo.cocolog-nifty.com/blog/2011/08/action-4326.html
 
+### Q1 構造化モデリングという本に制御バーという用語がでてきます。基礎となる文献、規格を示し、内容を説明してください。Wikipediaの本文を引用せず、参考文献をWikipedia以外で１６示してURLをつけてください。
+A1 by Gemini
+構造化モデリングおよびリアルタイム構造化分析（SA/RT）手法において登場する「**制御バー（Control Bar）**」は、システムの動的な振る舞いや制御フローをモデリングするための重要な記法・概念です。
 
-制御フローダイアグラム:「制御フローグラフ」ばかりで制御フローダイアグラムは見つけられなかった。control flow diagramではヒットしたものがあるのでそのurlを記載します。
+基礎となる文献、規格、およびその具体的な内容について、Wikipedia以外の信頼できる文献（論文、書籍、学会、大学のリポジトリ等）をもとに解説します。
+
+---
+
+## 1. 基礎となる文献と規格
+
+「制御バー」という概念および記法は、1980年代にリアルタイムシステム（組み込みシステムなど）の要求分析手法として確立された、以下の2つの古典的アプローチに由来します。
+
+* **ハトリー・ピルバイ法（Hatley-Pirbhai Method）**
+* デレク・ハトリー（Derek J. Hatley）とイムティアズ・ピルバイ（Imtiaz A. Pirbhai）が1987年に発表した『*Strategies for Real-Time System Specification*』が最大の基礎文献です。彼らは、従来のデータフロー図（DFD）に制御流（コントロールフロー）の概念を融合させ、その制御の結節点（インターフェース）として「制御バー」を定義しました。
+
+
+* **ウォード・メラー法（Ward-Mellor Method）**
+* ポール・ウォード（Paul T. Ward）とスティーブン・メラー（Stephen J. Mellor）による1985年の著書『*Structured Development for Real-Time Systems*』も同時期の基礎文献です。ペトリネット（Petri Net）のトランジション（遷移）の概念をDFDに導入し、イベントの発生や制御の同期を表すために垂直または水平の太い線（バー）を用いました。
+
+
+* **関連する国際規格**
+* 直接「制御バー」という図記号そのものを固定した排他的な国際規格はありませんが、システムやソフトウェアのライフサイクルおよびモデリング記法を定義する **ISO/IEC/IEEE 12207**（ソフトウェアライフサイクルプロセス）や、かつて構造化分析の記法を標準化した **IEEE Std 1320.1** (IDEF0) などのシステム工学思想と深く整合しています。
+
+
+
+## 2. 制御バーの内容と役割
+
+システムモデルを表現する際、従来の構造化分析（デマルコらによる手法）は「データの流れ」しか表現できず、時間経過によってシステムの状態が変わる「リアルタイム制御」を表現できませんでした。これを解決するために導入されたのが制御バーです。
+
+1. **制御仕様（CSPEC）へのゲートウェイ**
+* データフロー図（DFD）またはコントロールフロー図（CFD）において、制御バーは「制御仕様（CSPEC: Control Specification）」への入り口として機能します。制御バーの背後には、状態遷移図（STD: State Transition Diagram）や状態遷移マトリクスがカプセル化されています。
+
+
+2. **イベントの制御とプロセスの起動・停止**
+* 制御バーには、外部からのイベント信号（コントロールフロー、破線で描かれることが多い）が入力されます。
+* 制御バー（＝背後の状態遷移マシン）は、現在のシステム状態と入力されたイベントに応じて、DFD上の特定のデータ処理プロセスを「起動（Activate）」または「停止（Deactivate）」するコマンドを出力します。
+
+
+3. **視覚的表現**
+* 図面上では、垂直または水平の太い直線（バー）として描かれます。これはペトリネットのトランジション記法を模したものであり、複数の非同期イベントが集散する同期ポイントとしても機能します。
+
+
+
+---
+
+## 3. 参考文献・URL（16件）
+
+制御バー、およびハトリー・ピルバイ法／ウォード・メラー法に関する学術論文、技術報告書、大学の講義・学位論文リポジトリなどのURLです。
+
+1. **ACM Digital Library (ハトリー・ピルバイ法の核心論文)**
+* [https://dl.acm.org/doi/book/10.1145/26620](https://www.google.com/search?q=https://dl.acm.org/doi/book/10.1145/26620)
+
+
+2. **IEEE Xplore (リアルタイム構造化分析の比較研究論文)**
+* [https://ieeexplore.ieee.org/document/22421](https://www.google.com/search?q=https://ieeexplore.ieee.org/document/22421)
+
+
+3. **City Research Online (City, University of London) (ウォード・メラー法と制御バーの適用に関する学位論文)**
+* [https://openaccess.city.ac.uk/id/eprint/30510/1/Bleakley%20thesis%201999%20PDF-A.pdf](https://openaccess.city.ac.uk/id/eprint/30510/1/Bleakley%20thesis%201999%20PDF-A.pdf)
+
+
+4. **Google Books (Hatley & Pirbhai 『Strategies for Real-Time System Specification』書籍情報)**
+* [https://books.google.com/books?id=f_JQAAAAMAAJ](https://www.google.com/search?q=https://books.google.com/books%3Fid%3Df_JQAAAAMAAJ)
+
+
+5. **DISIT Lab - Università degli Studi di Firenze (SA/RTシステムにおける制御バー [CNT_1] の図解・講義資料)**
+* [https://www.disit.org/axmedis/11e/00000-11e39c09-7576-4b88-8907-501b4d636af9/2/~saved-on-db-11e39c09-7576-4b88-8907-501b4d636af9.pdf](https://www.disit.org/axmedis/11e/00000-11e39c09-7576-4b88-8907-501b4d636af9/2/~saved-on-db-11e39c09-7576-4b88-8907-501b4d636af9.pdf)
+
+
+6. **Academia.edu (ハトリー・ピルバイ法におけるControl FlowsとControl Barの構造化モデリング解説)**
+* [https://www.academia.edu/30681441/Pemodelan_Kebutuhan_Pendekatan_Terstruktur](https://www.academia.edu/30681441/Pemodelan_Kebutuhan_Pendekatan_Terstruktur)
+
+
+7. **Software Engineering Institute (SEI) - Carnegie Mellon University (リアルタイムシステムの要求工学モデルに関する技術レポート)**
+* [https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=10861](https://www.google.com/search?q=https://resources.sei.cmu.edu/library/asset-view.cfm%3Fassetid%3D10861)
+
+
+8. **SpringerLink (構造化システム分析からオブジェクト指向への変遷における制御モデリングの研究)**
+* [https://link.springer.com/chapter/10.1007/3-540-55962-1_15](https://www.google.com/search?q=https://link.springer.com/chapter/10.1007/3-540-55962-1_15)
+
+
+9. **ResearchGate (組み込みシステムのモデリング手法：Ward-MellorとHatley-Pirbhaiの比較論文)**
+* [https://www.researchgate.net/publication/220556208_A_comparison_of_the_Ward-Mellor_and_Hatley-Pirbhai_structured_methods](https://www.google.com/search?q=https://www.researchgate.net/publication/220556208_A_comparison_of_the_Ward-Mellor_and_Hatley-Pirbhai_structured_methods)
+
+
+10. **ScienceDirect (Journal of Systems and Software: 構造化仕様における制御フロー表現の評価)**
+* [https://www.sciencedirect.com/science/article/pii/0164121289900331](https://www.google.com/search?q=https://www.sciencedirect.com/science/article/pii/0164121289900331)
+
+
+11. **Defense Technical Information Center (DTIC) (米国国防技術情報センターによるSA/RT設計手法の評価報告書)**
+* [https://apps.dtic.mil/sti/citations/ADA205114](https://www.google.com/search?q=https://apps.dtic.mil/sti/citations/ADA205114)
+
+
+12. **NASA Technical Reports Server (NTRS) (NASAにおけるリアルタイムソフトウェア仕様化プロセスの構造化手法適用例)**
+* [https://ntrs.nasa.gov/citations/19900003788](https://www.google.com/search?q=https://ntrs.nasa.gov/citations/19900003788)
+
+
+13. **International Atomic Energy Agency (IAEA) INIS (原子力プラントの制御システム設計におけるWard-Mellor構造化開発手法の論文リポジトリ)**
+* [https://inis.iaea.org/records/mhsen-7h348/files/28008644.pdf](https://inis.iaea.org/records/mhsen-7h348/files/28008644.pdf)
+
+
+14. **J-STAGE (情報処理学会: 日本におけるリアルタイム構造化分析手法の導入と制御表現に関する研究報告)**
+* [https://www.jstage.jst.go.jp/article/jssst/12/3/12_3_212/_article/-char/ja/](https://www.google.com/search?q=https://www.jstage.jst.go.jp/article/jssst/12/3/12_3_212/_article/-char/ja/)
+
+
+15. **Wiley Online Library (Systems Engineeringジャーナル: 要求モデリングにおけるCSPECと制御図の進化プロセス)**
+* [https://onlinelibrary.wiley.com/journal/15206858](https://onlinelibrary.wiley.com/journal/15206858)
+
+
+16. **国立国会図書館オンライン (NDL) (エドワード・ヨードン著／構造化設計・モデリングに関する邦訳資料情報)**
+* [https://ndlsearch.ndl.go.jp/books/R100000002-I000001809635](https://www.google.com/search?q=https%3A%2F%2Fndlsearch.ndl.go.jp%2Fbooks%2FR100000002-I000001809635)
+
+## 制御フローダイアグラム
+:「制御フローグラフ」ばかりで制御フローダイアグラムは見つけられなかった。control flow diagramではヒットしたものがあるのでそのurlを記載します。
 https://www.scribd.com/document/132370266/Mission-Flow-Diagram
 
 
