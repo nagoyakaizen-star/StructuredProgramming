@@ -1,6 +1,8 @@
 wikipediaの本文は引用しない。URLの中身はOK.
 
 仕様のURLもWikipedia以外。
+## Q1 ISO/IEC/IEEE 24765 は該当JISはありますか
+A1 by Gemini
 
 はい、ISO/IEC/IEEE 24765（Systems and software engineering — Vocabulary）に**直接対応する（翻訳・一致した）JIS規格は現時点では存在しません。**
 
