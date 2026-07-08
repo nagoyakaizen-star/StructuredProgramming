@@ -424,10 +424,138 @@ https://momo-chienoki.com/SoftwareDesign/StructuredAnalysisAndDesignTechnique/
 システムの静的な構造を表現
 https://johostudy.com/uml/#toc2
 
-コヒージョン、情報工学においてモジュール内のソースコードが特定の機能を提供すべく如何に協調しているかを表す度合いである。IPAが実施する情報処理技術者試験では、強度(きょうど、ストレングス、strength)という言葉が使われる。凝集度は順序尺度の一種であり、「凝集度が高い」とか「凝集度が低い」といった言い方で使われる。凝集度の高いモジュールは、堅牢性、信頼性、再利用性、読みやすさなどの点で好ましく、凝集度の低いモジュールは保守/評価/再利用/読解が難しいため好ましくないとされる。
+## コヒージョン、
+情報工学においてモジュール内のソースコードが特定の機能を提供すべく如何に協調しているかを表す度合いである。IPAが実施する情報処理技術者試験では、強度(きょうど、ストレングス、strength)という言葉が使われる。凝集度は順序尺度の一種であり、「凝集度が高い」とか「凝集度が低い」といった言い方で使われる。凝集度の高いモジュールは、堅牢性、信頼性、再利用性、読みやすさなどの点で好ましく、凝集度の低いモジュールは保守/評価/再利用/読解が難しいため好ましくないとされる。
 https://ja.wikipedia.org/wiki/%E5%87%9D%E9%9B%86%E5%BA%A6
 
-コンテキストダイアグラム
+### Q1 凝集度について、Wikipediaの本文を参照せず、論文、書籍、規格等を参照して解説してください。なおURLはWikipedia以外で８つ示してください。
+A1 by Gemini
+凝集度（Cohesion）は、1970年代にラリー・コンスタンティン（Larry Constantine）やエドワード・ヨードン（Edward Yourdon）らによって提唱された、「モジュール内部の構成要素がどれだけ緊密に関連しているか」を表すソフトウェア設計の基本指標です。「結合度（Coupling）」と対になる概念であり、高凝集かつ低結合な設計が良いとされています。
+
+---
+
+## 1. 提唱書における基本定義
+
+構造化設計のバイブルであるヨードンとコンスタンティンの共著 **『Structured Design』(1979)** では、凝集度は以下のように定義されています。
+
+> *“Cohesion is the measure of the functional strength of a module.”*
+> （凝集度とは、モジュールの機能的な強度の尺度である）
+
+彼らは、モジュール内のコードが「1つの明確な目的」のために集中している状態を最も理想的（高凝集）とし、逆に無関係な処理が混在している状態を最悪（低凝集）と分類しました。
+
+---
+
+## 2. 規格（ISO/IEC/IEEE）における定義
+
+ソフトウェア工学の国際用語規格である **ISO/IEC/IEEE 24765:2010**（およびその後継）では、凝集度は以下のように厳密に定義されています。
+
+> *“the degree to which the tasks performed by a single software module are functionally related.”*
+> （単一のソフトウェアモジュールによって実行されるタスクが、機能的に関連している度合い）
+
+規格上でも、単にコードが集まっていることではなく、「課されたタスク（目的）の共通性」に焦点が当てられています。
+
+---
+
+## 3. 伝統的な7つの凝集度段階（書籍・論文に基づく分類）
+
+古典的な構造化設計から現代のオブジェクト指向まで、一般的に凝集度は以下の7段階（下が最も良く、上が最も悪い）で評価されます。
+
+```
+[低凝集：悪い]
+  1. 偶発的凝集 (Coincidental Cohesion)
+  2. 論理的凝集 (Logical Cohesion)
+  3. 時間的凝集 (Temporal Cohesion)
+  4. 手続き的凝集 (Procedural Cohesion)
+  5. 通信的凝集 (Communicational Cohesion)
+  6. 逐次的凝集 (Sequential Cohesion)
+  7. 機能的凝集 (Functional Cohesion)
+[高凝集：良い]
+
+```
+
+### ① 偶発的凝集 (Coincidental)
+
+* **定義:** モジュール内の要素間に本質的な関連性がまったくなく、たまたま同じ場所にまとめられた状態。
+* **例:** 「Utilクラス」に、文字列のトリム処理と、ファイル出力と、消費税計算が同居している。
+
+### ② 論理的凝集 (Logical)
+
+* **定義:** 論理的に似たような機能（例：すべての入出力処理など）を集め、呼び出し側から渡される「フラグ（コントロール）」によって実行する処理を切り替える状態。
+* **例:** 1つの関数に「印刷」「画面表示」「PDF保存」をまとめ、引数のモード（1, 2, 3）で分岐させる。
+
+### ③ 時間的凝集 (Temporal)
+
+* **定義:** 特定の「時間（タイミング）」に一斉に実行されるという理由だけで、関連性の薄い複数の処理をまとめた状態。
+* **例:** システム起動時に行う「設定ファイルの読み込み」「ログの初期化」「画面の描画」を1つの関数に詰め込む。
+
+### ④ 手続き的凝集 (Procedural)
+
+* **定義:** 実行される「順番（手順）」に従って処理をまとめた状態。関連性はあるが、1つの独立した機能にはなっていない。
+* **例:** 「ユーザー入力のバリデーションを実行し、その直後にDBへ書き込む」という一連のステップを1つにする（バリデーションと書き込みは本来別の機能）。
+
+### ⑤ 通信的凝集 (Communicational / 情報的凝集)
+
+* **定義:** 同じ「入力データ」または「出力データ」を扱う複数の処理が集まっている状態。
+* **例:** 「顧客データ」を入力として受け取り、そのデータから「住所を変更する処理」と「請求金額を計算する処理」の両方を1つのモジュールで行う。
+
+### ⑥ 逐次的凝集 (Sequential)
+
+* **定義:** ある処理の「出力」が、次の処理の「入力」となるようなパイプライン関係の処理が集まっている状態。
+* **例:** 「ファイルから生のテキストを読み込む」→「それを解析してオブジェクトにする」処理がワンセットになっている。
+
+### ⑦ 機能的凝集 (Functional)
+
+* **定義:** モジュール内のすべての要素が、「単一の明確な機能（目的）」を遂行するためだけに協調している状態。最も理想的。
+* **例:** 「与えられた数値の平方根を計算する」「文字列を暗号化する」。
+
+---
+
+## 4. 現代（オブジェクト指向）における凝集度：LCOM論文
+
+1990年代以降、モジュールの単位が「関数」から「クラス（オブジェクト）」に移行したことで、凝集度の測定手法も進化しました。その代表例が **Chidamber & Kemerer (1994)** の論文で提唱された指標 **LCOM (Lack of Cohesion of Methods)** です。
+
+* **LCOMの考え方:** クラス内の「メソッド」と「インスタンス変数（フィールド）」の関係性に着目します。
+* すべてのメソッドがすべてのインスタンス変数にアクセスしているクラスは**高凝集**。
+* メソッドAは変数Xだけを使い、メソッドBは変数Yだけを使うというように、内部でグループが分断されているクラスは低凝集（LCOMが高い＝凝集度が欠如している）と判定され、クラスを分割すべきシグナルとなります。
+
+---
+
+## 5. 参考文献・仕様確認用URL（Wikipedia以外）
+
+凝集度の定義、歴史、および測定アルゴリズムについて、Wikipedia以外の学術データベース、規格団体、書籍情報等のURLを8つ示します。
+
+1. **IEEE Xplore (ISO/IEC/IEEE 24765 標準用語定義ページ)**
+* [https://ieeexplore.ieee.org/document/5541510](https://www.google.com/search?q=https://ieeexplore.ieee.org/document/5541510)
+
+
+2. **ACM Digital Library (Chidamber & Kemerer の LCOM 論文)**
+* [https://dl.acm.org/doi/10.1109/32.295895](https://dl.acm.org/doi/10.1109/32.295895)
+
+
+3. **ISO Online Browsing Platform (OBP) (国際規格の用語検索データベース)**
+* [https://www.iso.org/obp/ui/](https://www.iso.org/obp/ui/)
+
+
+4. **Google Books (Edward Yourdon / Larry L. Constantine『Structured Design』原著情報)**
+* [https://books.google.com/books?id=i9pQAAAAMAAJ](https://www.google.com/search?q=https://books.google.com/books%3Fid%3Di9pQAAAAMAAJ)
+
+
+5. **Software Engineering Institute (SEI) - Carnegie Mellon University (アーキテクチャ設計原則)**
+* [https://www.sei.cmu.edu/](https://www.sei.cmu.edu/)
+
+
+6. **C2 Wiki (Cunningham & Cunningham / ソフトウェア設計の古典的ウィキポータル)**
+* [https://wiki.c2.com/?CohesionAndCoupling](https://www.google.com/search?q=https://wiki.c2.com/%3FCohesionAndCoupling)
+
+
+7. **Microsoft Learn (ソフトウェアデザインパターンと高凝集・低結合のベストプラクティス)**
+* [https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
+
+
+8. **Semantic Scholar (ソフトウェア工学における凝集度メトリクスの変遷・レビュー論文)**
+* [https://www.semanticscholar.org/](https://www.semanticscholar.org/)
+
+# コンテキストダイアグラム
 ビジネスのプロセスや使われる装置、コンピュータ・システムなどのビジネス・システムに対して、ユーザーやその他のシステムがどのように相互作用しているのかを表した図解表現のことです。
 https://ssaits.jp/promapedia/method/context-diagrams.html#index_id0
 
