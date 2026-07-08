@@ -288,6 +288,7 @@ Event Sequence Diagram（イベント系列図）
 
 このISO用語集には約2万語近い専門用語が掲載されていますが、「Action」や「Event」のような重要用語についても、今回のように関連語までまとめて理解すると、要求モデリングや設計の全体像がつかみやすくなります。
 
+# 210 
 ## イベントリスト
 システムの外部で発生する出来事（イベント）を一覧にしたもの
 
@@ -302,8 +303,6 @@ Event Sequence Diagram（イベント系列図）
 ⑤エフェクト（影響）： システムの反応による外部への影響。 
 P139
 https://www.tetras.uitec.jeed.go.jp/files/kankoubutu/a-135-04.pdf?utm_source=chatgpt.com 
-
-
 
 エフェクト
 システムが処理を行った結果、外部に与える影響や結果
@@ -358,13 +357,56 @@ Note 1 to entry: Types include common-environment coupling, content coupling, co
 coupling, and pathological coupling.
 
 
-組み合わせコントロール
-？？
-結合度
-??
-カップリングと同じ？
+## 組み合わせコントロール
+### Q1 構造化モデリングという本で、「組み合わせコントロール」ていう用語が出てきます。英語ではどういうか、規格ではどう定義しているかわかりますか。
+A1 by Gemini
+『構造化モデリング』（Structured Modeling）は、主にエドワード・ヨードン（Edward Yourdon）やラリー・コンスタンティン（Larry Constantine）、あるいはトム・デマルコ（Tom DeMarco）らが提唱した「構造化分析・設計手法（Structured Analysis and Design Technique: SADT）」に関連する古典的名著ですね。
 
-決定表
+この文脈において、「組み合わせコントロール」に該当する概念は、英語で **"Combinational Control"**（または結合度・モジュール強度の文脈で **"Control Coupling / Control Cohesion"**）と呼ばれます。
+
+規格や構造化手法における定義と英語表現について詳しく解説します。
+
+---
+
+### 1. 英語ではどう言うか
+
+『構造化モデリング』における制御（コントロール）の文脈により、英語表現は以下の2つに分かれます。
+
+* **Combinational Control（組み合わせ制御 / 組み合わせコントロール）**
+* **意味:** 入力信号の組み合わせ（論理回路でいう論理和や論理積など）だけで次の出力や状態が一意に決まる制御方式。過去の状態（履歴）に依存しない制御を指します。
+
+
+* **Control Coupling（制御結合 / コントロール結合）**
+* **意味:** モジュール間の関係性（結合度）を表す設計用語。あるモジュールが別のモジュールの実行順序やロジックを制御するためのフラグやスイッチ（コントロール）を渡す関係を指します。複数のフラグが複雑に絡み合う状態を「組み合わせコントロール（の結合度が高い）」と呼ぶことがあります。
+
+
+
+### 2. 規格（ISO/IEC/IEEE）ではどう定義されているか
+
+ソフトウェア工学の用語規格である **ISO/IEC/IEEE 24765**（Systems and software engineering — Vocabulary）において、直接「Combinational Control」という独立した項目の定義はありませんが、ベースとなる **Control（制御）** や **Control Coupling（制御結合）** について以下のように厳密に定義されています。
+
+> **Control Coupling（制御結合）の定義（ISO/IEC/IEEE 24765より）**
+> * "coupling in which one software module communicates information to another module for the explicit purpose of influencing the execution of the latter module"
+> * （訳：あるソフトウェアモジュールが、別のモジュールの実行に影響を与えるという明示的な目的のために、そのモジュールに情報を伝達する結合形式）
+> 
+> 
+
+構造化設計の神様であるヨードンやコンスタンティンは、この「コントロール（フラグ）」をモジュール間で複雑に**組み合わせ**て渡してしまう設計（組み合わせコントロール結合）は、モジュール間の独立性を著しく下げるため、「避けるべき悪い設計（結合度が高い設計）」として強く批判しました。
+
+### 3. 構造化モデリング（SADT）における位置づけ
+
+本書における「組み合わせコントロール」は、多くの場合「データフロー（Data Flow）」と「コントロールフロー（Control Flow）」を明確に分離するための文脈で登場します。
+
+1. **状態を持たない制御:** 過去の履歴に関係なく、「AかつBの条件が揃ったらXを起動する」という条件分岐の組み合わせでシステムをコントロールする設計。
+2. **対比される概念（順序コントロール / 状態遷移）:** 対比としてよく登場するのが「Sequential Control（順序コントロール）」や「State Transition（状態遷移コントロール）」です。こちらは過去にどのステップを踏んだか（状態）によって、同じ入力でも挙動が変わる制御を指します。
+
+もし、お読みになっている本の具体的なページや前後の文脈（モジュールの話なのか、DFD/CFDなどの図の話なのか）が分かれば、さらに踏み込んで解説できます。お気軽にお知らせください。
+
+## 結合度
+??
+-> カップリングと同じ？
+
+## 決定表
 複数の条件と、それによって決定づけられる動作（行動）を整理するためのツールです。別名「デシジョンテーブル（Decision tables）」とも呼ばれています。
 https://ssaits.jp/promapedia/method/decision-tables.html#index_id0
 
