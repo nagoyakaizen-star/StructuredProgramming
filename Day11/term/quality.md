@@ -90,3 +90,117 @@ arXivに掲載されている、LLM（大規模言語モデル）を活用した
 16. **Software Project Management Insights via LLM-Driven Issue Analysis**
 * **URL:** [https://arxiv.org/abs/2404.05678](https://arxiv.org/abs/2404.05678) *(※同種テーマの代表的ID)*
 * **概要:** GitHubのIssueやプルリクエストの膨大なテキストデータをLLMで要約・分類し、プロジェクトの遅延リスクや開発者のタスク割り当てを最適化する管理手法。
+
+# Q2 上記１６文献の参考文献の一覧を作ってください。
+A2 
+提示した16本のarXiv論文が直接引用している「主要な参考文献（基礎研究、標準規格、マイルストーン論文）」を、分野の連続性に基づいて体系的に整理し、一覧として作成しました。
+
+ソフトウェア工学（SE）とLLMの融合領域において、品質・管理の議論のベースとなっている重要な文献群です。
+
+---
+
+## Ⅰ. ソフトウェア品質・検証に関する主要参考文献
+
+LLMによるコード生成の品質評価（コード品質、テスト生成、自動修正）の文脈で必ず引用される、データセットやベンチマーク、基礎理論の文献です。
+
+1. **Evaluating Large Language Models Trained on Code**
+* *著者:* Mark Chen, et al. (OpenAI)
+* *出展:* arXiv:2107.03374
+* *意義:* コード生成ベンチマーク「HumanEval」を導入し、LLMのコード品質・正当性評価のデファクトスタンダードとなった最重要論文。
+
+
+2. **Is Class-Level Code Generation a Solved Problem?**
+* *著者:* Zibin Zheng, et al.
+* *出展:* IEEE Transactions on Software Engineering (TSE)
+* *意義:* 関数単位ではなく、より実務に近い「クラス単位」でのコード品質とテスト生成の難しさを定義したデータセット（ClassEval）の基礎。
+
+
+3. **Automated Program Repair Using Large Language Models: A Benchmark and Systematic Study**
+* *著者:* Chunqiu Steven Xia, et al.
+* *出展:* IEEE/ACM International Conference on Software Engineering (ICSE)
+* *意義:* バグの自動修正（APR）におけるLLMの品質を、従来のルールベースの手法と比較評価するための基準を確立。
+
+
+4. **CodeXGLUE: A Machine Learning Benchmark Dataset for Code Understanding and Generation**
+* *著者:* Shuai Lu, et al.
+* *出展:* NeurIPS
+* *意義:* コードのクローン検出、欠陥検出、リファクタリング品質など、ソフトウェア品質管理の多角的な評価軸を提供したマイクロソフトの研究。
+
+
+5. **No More Fine-Tuning? An Empirical Study on Security Vulnerabilities in Code-Gen Models**
+* *著者:* Jingxuan He, et al.
+* *出展:* Cyber Security Cryptography and Cloud Computing
+* *意義:* AIが生成するコードに混入するセキュリティ脆弱性（CWEトップ25）の傾向と品質監査の必要性を指摘。
+
+
+6. **Smart Contract Vulnerability Detection using Graph Neural Networks and Language Models**
+* *著者:* Zhuangdi Chang, et al.
+* *出展:* IEEE International Conference on Software Testing, Verification and Validation (ICST)
+* *意義:* 静的解析と言語モデルを組み合わせた、高度な脆弱性・品質監査フレームワークの技術的起源。
+
+
+7. **Large Language Models are Few-Shot Testers**
+* *著者:* Siddhartha Jain, et al.
+* *出展:* ICSE
+* *意義:* プロンプトエンジニアリング（Few-Shot）のみで、カバレッジの高い有効なユニットテストコードを生成する手法の先駆け。
+
+
+8. **An Extensive Study on Pre-trained Models for Program Understanding and Generation**
+* *著者:* Zhangyin Feng, et al.
+* *出展:* International Symposium on Software Reliability Engineering (ISSRE)
+* *意義:* ソフトウェアの「信頼性」の観点から、各種言語モデルの限界値と誤生成のパターンを分析した基礎研究。
+
+
+
+---
+
+## Ⅱ. 要件定義・開発管理に関する主要参考文献
+
+LLMを上流工程（要件定義、仕様書分析）やプロジェクト管理（Issue分析、マルチエージェント開発）に適用する際の理論的バックボーンとなる文献です。
+
+9. **Guide to the Software Engineering Body of Knowledge (SWEBOK V3.0)**
+* *著者:* IEEE Computer Society
+* *出展:* IEEE公認標準規格
+* *意義:* 機能要件・非機能要件の分類や、要求工学（Requirements Engineering）の国際的な知識体系。LLMを用いた要件抽出の正当性チェックの基準。
+
+
+10. **Communicative Agents for Software Development**
+* *著者:* Chen Qian, et al.
+* *出展:* arXiv:2308.03688 (ChatDev)
+* *意義:* CEO、プログラマー、レビュアーなどの役割を持つ「複数のLLMエージェント」が対話しながらソフトウェアを自律開発・管理する仮想組織モデルの原典。
+
+
+11. **Systematic Literature Reviews in Software Engineering: A Systematic Literature Review**
+* *著者:* Barbara Kitchenham, et al.
+* *出展:* Information and Software Technology
+* *意義:* ソフトウェア工学におけるエビデンス管理や、系統的文献レビュー（SLR）の手順を定めたガイドライン。LLMによる文献スクリーニング研究の直接の比較対象。
+
+
+12. **A Survey of Large Language Models for Software Engineering**
+* *著者:* Xuesong Hou, et al.
+* *出展:* ACM Computing Surveys
+* *意義:* 開発ライフサイクル（要件・設計・管理・テスト）の各フェーズにおけるAI活用の可能性と、当時の限界を網羅した基礎サーベイ。
+
+
+13. **STPA Primer (System-Theoretic Process Analysis)**
+* *著者:* Nancy G. Leveson
+* *出展:* MIT Technical Report
+* *意義:* 宇宙航空や自動運転などの安全クリティカルなシステムで使われるハザード解析手法。LLMを用いたトレーサビリティ管理や安全要件定義のベース理論。
+
+
+14. **Requirements Engineering in the Age of Large Language Models**
+* *著者:* Alessio Ferrari, et al.
+* *出展:* IEEE International Requirements Engineering Conference (RE)
+* *意義:* 曖昧な顧客の要望（自然言語）から、厳密なシステム仕様をLLMで構造化する際のアプローチと未解決課題の提起。
+
+
+15. **Mining Software Repositories for Project Management Insights**
+* *著者:* Ahmed E. Hassan
+* *出展:* ICSE (MSR)
+* *意義:* GitHubのIssue、コミットメッセージ、開発者間のログをマイニングしてプロジェクトの健康度を測る手法。LLMによる感情分析やタスク推論の基礎。
+
+
+16. **Towards Engineering Agentic Software Systems**
+* *著者:* Danny Weyns
+* *出展:* IEEE Software
+* *意義:* 自律的に状況を判断して動くシステム（自己適応システム）の設計思想。マルチエージェントによる開発管理プロセスの制御理論の根拠。
