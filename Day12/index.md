@@ -1324,3 +1324,176 @@ A2
 * **概要：** 「なぜ空き缶をリサイクルするのか・しないのか」という市井の人々の定性的な行動規範・道徳的判断ルールを認知決定ツールの形式でモデル化し、その妥当性を実際に検証した応用人文科学論文。
 * **URL：** [https://www.researchgate.net/publication/277363205_Testing_an_Ethnographic_Decision_Tree_Model_on_a_National_Sample_Recycling_Beverage_Cans](https://www.researchgate.net/publication/277363205_Testing_an_Ethnographic_Decision_Tree_Model_on_a_National_Sample_Recycling_Beverage_Cans)
 * 
+
+# Q4 原因分析の社会科学、自然科学、人文科学における違いと、それぞれ８つの参考文献をURLつきでしめしてください。
+A44
+原因分析（Causal Analysis / Causation）は、対象となる事象が「なぜ起きたのか」を解き明かすためのアプローチです。しかし、自然科学、社会科学、人文科学では、分析の対象、前提とする因果のルール、そして導き出したい結論の性質が大きく異なります。
+
+それぞれの学術領域における定義やアプローチの違いを整理し、各領域で極めて重要とされる参考文献をURL付きで計24本（各8本）提示します。
+
+---
+
+## 1. 自然科学における「原因分析」
+
+* **定義・アプローチ：**
+自然科学における原因分析は、「客観的、決定論的、または確率論的な自然法則」に基づきます。普遍的な法則（万有引力の法則、熱力学の法則など）の存在を前提とし、因果関係を客観的・再現可能な実験や観測、数理モデルによって証明します。
+* **特徴：**
+「条件 $A$（原因）があれば、自然界の法則に従って必然的に現象 $B$（結果）が起きる」という、**人間の意思や解釈を介在させないメカニズム**を解明します。
+
+### 参考文献（自然科学編）
+
+1. **Judea Pearl - Causal inference in statistics: An overview**
+統計的・数理的に因果関係を定義・分析するための「因果ダイアグラム（DAGs）」の世界的基礎文献。
+* **URL:** [https://ftp.cs.ucla.edu/pub/stat_ser/r350.pdf](https://ftp.cs.ucla.edu/pub/stat_ser/r350.pdf)
+
+
+2. **Donald B. Rubin - Causal Inference Using Potential Outcomes**
+統計学における因果効果測定のデファクトスタンダード「ルービン因果モデル（反事実モデル）」の基礎。
+* **URL:** [https://www.stat.berkeley.edu/~census/rubincausal.pdf](https://www.google.com/search?q=https://www.stat.berkeley.edu/~census/rubincausal.pdf)
+
+
+3. **John Stuart Mill - A System of Logic (Chapter on Law of Causation)**
+自然科学における因果推論の古典的基礎である「ミルの前件・後件の一致法・差異法」を定式化した歴史的書物。
+* **URL:** [https://www.gutenberg.org/files/27942/27942-h/27942-h.html](https://www.gutenberg.org/files/27942/27942-h/27942-h.html)
+
+
+4. **David Hume - An Enquiry Concerning Human Understanding (Section VII: Of the Idea of Necessary Connexion)**
+「因果関係とは近接性と時間的前後関係、そして恒常的連結にすぎない」という、実証主義自然科学の因果観を決定づけた哲学書。
+* **URL:** [https://www.gutenberg.org/files/9662/9662-h/9662-h.htm](https://www.gutenberg.org/files/9662/9662-h/9662-h.htm)
+
+
+5. **Sir Austin Bradford Hill - The Environment and Disease: Association or Causation?**
+医学・疫学分野における「相関関係」と「因果関係」を区別するための「ブラッドフォード・ヒル基準」を提唱した伝説的論文。
+* **URL:** [https://pmc.ncbi.nlm.nih.gov/articles/PMC1898525/](https://pmc.ncbi.nlm.nih.gov/articles/PMC1898525/)
+
+
+6. **Mervyn Susser - Causal Thinking in the Health Sciences**
+公衆衛生や健康科学において、多層的な要因がどのように病気という結果に結びつくかをシステム論的に分析した基礎文献。
+* **URL:** [https://ajph.aphapublications.org/doi/pdf/10.2105/AJPH.63.1.16](https://www.google.com/search?q=https://ajph.aphapublications.org/doi/pdf/10.2105/AJPH.63.1.16)
+
+
+7. **James Woodward - Making Things Happen: A Theory of Causal Explanation**
+現代科学哲学において、介入（Manipulation）によって因果関係を定義・分析する「操作主義的因果論」の代表的著作（スタンフォード大学紹介頁など）。
+* **URL:** [https://plato.stanford.edu/entries/causation-mani/](https://plato.stanford.edu/entries/causation-mani/)
+
+
+8. **Kenneth J. Rothman - Causes**
+医学・疫学において、単一の原因ではなく「十分原因と必要原因の組み合わせ（パイモデル）」によって結果が生じるメカニズムを示した論文。
+* **URL:** [https://pmc.ncbi.nlm.nih.gov/articles/PMC1639145/](https://www.google.com/search?q=https://pmc.ncbi.nlm.nih.gov/articles/PMC1639145/)
+
+
+
+---
+
+## 2. 社会科学における「原因分析」
+
+* **定義・アプローチ：**
+社会科学における原因分析は、「個人の意思決定、集合的行動、制度、社会構造」を対象とします。物理的な自然法則ではなく、「インセンティブ、規範、階級、政策」が原因となり、人々の行動を通じて社会現象（結果）が生まれると考えます。
+* **特徴：**
+社会のシステムは極めて複雑で統制された実験が困難なため、統計的因果推論（操作変数法、差分の差分法など）や、定性的分析（質的比較分析：QCA）を用いて「何が本質的なトリガーであったか」を追究します。
+
+### 参考文献（社会科学編）
+
+1. **Joshua D. Angrist & Jörn-Steffen Pischke - Mostly Harmless Econometrics**
+経済学・社会科学における「因果推論（自然実験や操作変数法など）」の現代的スタンダードを示すバイブル。
+* **URL:** [https://www.mostlyharmlesseconometrics.com/](https://www.mostlyharmlesseconometrics.com/)
+
+
+2. **Gary King, Robert O. Keohane, & Sidney Verba - Designing Social Inquiry**
+社会科学において、定性的（インタビューや事例分析）なアプローチでいかに科学的かつ厳密に因果推論を行うかを体系化した名著。
+* **URL:** [https://press.princeton.edu/books/paperback/9780691217116/designing-social-inquiry](https://www.google.com/search?q=https://press.princeton.edu/books/paperback/9780691217116/designing-social-inquiry)
+
+
+3. **Charles C. Ragin - Redesigning Social Inquiry: Fuzzy Sets and Beyond**
+「AかつBのときにのみCが起きる」という、要因の「組み合わせ」から社会的因果関係（QCA）を分析する手法を確立した文献。
+* **URL:** [https://press.uchicago.edu/ucp/books/book/chicago/R/bo5880798.html](https://www.google.com/search?q=https://press.uchicago.edu/ucp/books/book/chicago/R/bo5880798.html)
+
+
+4. **Peter Hedström & Richard Swedberg - Social Mechanisms: An Analytical Approach to Social Theory**
+統計的相関（ブラックボックス）を嫌い、個人行動の連鎖がいかにして社会現象（結果）を生むかという「社会的メカニズム」を追究する社会学の分析手法。
+* **URL:** [https://www.cambridge.org/core/books/social-mechanisms/ED3EF33B88AE77C686737E90B01AA348](https://www.google.com/search?q=https://www.cambridge.org/core/books/social-mechanisms/ED3EF33B88AE77C686737E90B01AA348)
+
+
+5. **Paul R. Rosenbaum & Donald B. Rubin - The Central Role of the Propensity Score in Observational Studies for Causal Effects**
+社会科学の実データ分析（観察研究）で最も多用される「傾向スコア（Propensity Score）」を用いた因果分析手法。
+* **URL:** [https://academic.oup.com/biomet/article/70/1/41/240875](https://www.google.com/search?q=https://academic.oup.com/biomet/article/70/1/41/240875)
+
+
+6. **Daniel Little - Causation in the Social Realm**
+社会科学哲学の第一人者が、自然科学の物理的因果と社会科学の「アクター中心の因果（意思や制度）」の違いを解説した論考。
+* **URL:** [https://www.researchgate.net/publication/368481550_Causation_in_the_Social_Realm](https://www.researchgate.net/publication/368481550_Causation_in_the_Social_Realm)
+
+
+7. **Stephen L. Morgan & Christopher Winship - Counterfactuals and Causal Inference**
+反事実モデルを用いた社会学における因果推論の理論と、具体的な適用方法を網羅した包括的な教科書。
+* **URL:** [https://www.cambridge.org/core/books/counterfactuals-and-causal-inference/082729D52B7C0743B330F13F7DF94833](https://www.google.com/search?q=https://www.cambridge.org/core/books/counterfactuals-and-causal-inference/082729D52B7C0743B330F13F7DF94833)
+
+
+8. **Guido W. Imbens & Donald B. Rubin - Causal Inference for Statistics, Social, and Biomedical Sciences**
+ノーベル経済学賞を受賞したインベンスらによる、社会科学・行動科学における因果効果推定の数学的基礎を網羅した基本書。
+* **URL:** [https://www.cambridge.org/core/books/causal-inference-for-statistics-social-and-biomedical-sciences/773FE36894FE866385202860FA9009FE](https://www.google.com/search?q=https://www.cambridge.org/core/books/causal-inference-for-statistics-social-and-biomedical-sciences/773FE36894FE866385202860FA9009FE)
+
+
+
+---
+
+## 3. 人文科学における「原因分析」
+
+* **定義・アプローチ：**
+人文科学（歴史学、文学、哲学など）における原因分析は、「主観性、意図、解釈、文化的・思想的文脈」に焦点を当てます。なぜある歴史的事件が起きたのか、なぜある文学作品がその表現を選んだのかを、法則による説明ではなく、当時の人間の動機、信念、そしてテキストの読解（解釈学）を通して分析します。
+* **特徴：**
+「法則の適用（Nomothetic）」ではなく、「個別具体的で代替不可能な一回限りの出来事（Idiographic）」の背後にある、人間の「意味（Meaning）」や「価値」の動機を理解する（Understanding / Verstehen）行為として位置づけられます。
+
+### 参考文献（人文科学編）
+
+1. **Max Weber - "Objectivity" in Social Science and Social Policy (Verstehen Theory)**
+「理解社会学」の提唱者であり、人間の「主観的意味」の理解（Verstehen）を通じて、歴史的・人文的事象の因果関係を解釈する手法を提示。
+* **URL:** [https://archive.org/details/maxweberonmethod00webe](https://archive.org/details/maxweberonmethod00webe)
+
+
+2. **Wilhelm Dilthey - Introduction to the Human Sciences (Einleitung in die Geisteswissenschaften)**
+自然科学（説明：Erklären）と人文科学（理解：Verstehen）の方法論的・認識論的な絶対的差異を定義した人文科学史における最重要書。
+* **URL:** [https://archive.org/details/introductiontohu0000dilt_w7p2](https://www.google.com/search?q=https://archive.org/details/introductiontohu0000dilt_w7p2)
+
+
+3. **Georg Henrik von Wright - Explanation and Understanding**
+「人間の意図や目的（Teleological）」がどのように行動や現象の原因となるのかを、自然科学の因果法則モデル（Hempelの被覆法則）と対比させて論じた古典的哲学書。
+* **URL:** [https://trepo.tuni.fi/bitstream/10024/212614/1/Raatikainen_von_Wright_100.pdf](https://trepo.tuni.fi/bitstream/10024/212614/1/Raatikainen_von_Wright_100.pdf) *(※本概念を検証・再考したヘルシンキ大学等の研究論文)*
+
+
+4. **David Lewis - Causation as Influence**
+分析哲学において「もし〜でなかったら、〜も起きなかった（反事実）」という観点から、歴史的事象や日常的な人間の選択の因果をどう考えるかを論じた、現代哲学の超重要論文。
+* **URL:** [https://fitelson.org/probability/lewis_cai.pdf](https://www.google.com/search?q=https://fitelson.org/probability/lewis_cai.pdf)
+
+
+5. **R. G. Collingwood - The Idea of History (The Nature of Historical Causation)**
+「歴史学における原因分析とは、歴史的アクターの『思想（Mind）』を追体験し、その意図を明らかにすることである」と説いた歴史哲学の古典。
+* **URL:** [https://archive.org/details/in.ernet.dli.2015.188730](https://www.google.com/search?q=https://archive.org/details/in.ernet.dli.2015.188730)
+
+
+6. **Paul Ricoeur - Explanation and Understanding: On Science and the Human Sciences**
+言語学やテクスト解釈において、記号の客観的分析（説明）と、そこに込められた人間の意図（理解）がどのように往復し合って因果を形成するかを論じた哲学・解釈学の論考。
+* **URL:** [suspicious link removed] *(※Judeo-Christian / Philosophical context における言及データベース)*
+
+
+7. **Carl G. Hempel - The Function of General Laws in History**
+歴史学や人文科学における原因分析もまた、本質的には自然科学と同じ「普遍的法則（Covering Law）」に依拠すべきであると主張し、現在に至る人文・歴史科学の論争に火をつけた論理実証主義の代表的論文。
+* **URL:** [suspicious link removed]
+
+
+8. **Donald Davidson - Actions, Reasons, and Causes**
+「行為の理由（Reason）は、行為の原因（Cause）である」と論じ、人文科学的な意図や心の動きが物理的世界の因果関係とどう調和するかを解き明かした、心の哲学・行動哲学の金字塔的論文。
+* **URL:** [suspicious link removed]
+
+
+
+---
+
+### まとめ：各領域における原因分析の思想的ポジション
+
+| 領域 | 分析の対象 | 主な原因の性質 | 分析のゴール |
+| --- | --- | --- | --- |
+| **自然科学** | 物質、自然現象、生物システム | 普遍的な物理法則、化学変化、確率的遷移 | 再現性のある決定論的/確率的メカニズムの特定 |
+| **社会科学** | 社会システム、集団、市場、組織 | インセンティブ、政策介入、統計的確率、制度 | 相関関係を排除した「真の因果効果」の測定と一般化 |
+| **人文科学** | 歴史的事件、芸術、思想、人間の個別行動 | 自由意志、意図、情動、文化的コンテクスト、解釈 | 一回限りの事象に対する「意味の理解・追体験」 |
+
