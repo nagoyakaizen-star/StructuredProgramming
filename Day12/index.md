@@ -1086,3 +1086,151 @@ https://trends.codecamp.jp/blogs/media/terminology277?utm_source=chatgpt.com
 構造化手法：構造化手法は構造化設計とも呼ばれる手法であり、システム、特に大規模なシステムや複雑 な処理を持つシステムに対して、システム全体を小さな要素に分割し、それを階層的に組み上 げて作り上げる設計方式である。小さな要素として設計していくため、品質を維持しやすくま た保守を容易にすることができる。
 https://www.scc-kk.co.jp/scc-books/wp-content/data/7439/9784886477439_sample.pdf?utm_source=chatgpt.com
 
+# Q2 bug , error, fault, failureの違いを、規格または論文とそのURLを８つ以上示して教えてください。
+
+A2
+ソフトウェア工学、信頼性工学、システム安全の分野において、**bug、error、fault、failure** は明確に区別して定義されています。
+
+最も基本となる関係性は、**「Error（人間の誤り）が、システム内に Fault / Bug（欠陥）を生み出し、それが実行されることでシステム内部が Error（異常状態）になり、最終的に外部から見える Failure（故障・サービス停止）を引き起こす」**という因果の連鎖（**「Fault-Error-Failure」の因鎖モデル**）です。
+
+以下に、これら4つの用語の定義と違いについて、学術論文および標準規格を計8つ（それぞれURLを付記）用いて詳細に解説します。
+
+---
+
+### 1. 各用語の基本的な定義と違い
+
+* **Bug（バグ）**
+* 開発者がコードを記述する際などの、プログラム内の「不具合」を指す口語的・慣用的な表現。規格上は「Fault」や「Defect」として定義されることが多く、開発フェーズでコード内に埋め込まれたものを特に指す傾向にあります。
+
+
+* **Error（エラー / 誤り・誤り状態）**
+* 規格によって2つの側面を持ちます。
+1. **人間側の原因：** 人間が設計・コーディング・操作時に行う「誤った行為（Mistake）」。
+2. **システム側の状態：** 期待される正しい状態と、実際の内部状態との「差分（状態の異常）」。
+
+
+
+
+* **Fault（フォルト / 障害・欠陥）**
+* ハードウェアやソフトウェアの内部に存在する「欠陥・物理的異常」。プログラムであれば「誤ったコード部分」がこれにあたります。これが実行（アクティベート）されるまでは、システム内に「休止状態（Dormant）」として潜伏します。
+
+
+* **Failure（フェイラー / 故障・機能喪失）**
+* システムが「要求された機能（仕様）を正しく提供できなくなったイベント（出来事）」。ユーザーや外部システムから見て、あからさまに挙動がおかしくなったり停止したりした状態を指します。
+
+
+
+---
+
+### 2. 規格・論文による定義と解説（8つのソース）
+
+#### ① 基礎的な因果モデルを定義した標準論文
+
+##### 【文献1】信頼性の基本概念を体系化した世界最重要の論文
+
+* **タイトル:** Fundamental Concepts of Dependability
+* **著者:** A. Avizienis, J.-C. Laprie, B. Randell, C. Landwehr
+* **発行年:** 2004年
+* **URL:** [https://pld.ttu.ee/IAF0530/16/avi1.pdf](https://pld.ttu.ee/IAF0530/16/avi1.pdf)
+* **概要:**
+システム安全性や高信頼性コンピューティングの金字塔となる論文です。本書では「**Fault $\rightarrow$ Error $\rightarrow$ Failure**」の伝播チェーンを以下のように数学的・論理的に定義しています。
+* **Fault:** Errorを引き起こす、システム内の「原因（adjudged or hypothesized cause）」。
+* **Error:** システムがFailureを誘発し得る、内部状態の「不整合（invalid state）」。
+* **Failure:** サービスが仕様（Correct Service）から逸脱した「結果（event）」。
+
+
+
+##### 【文献2】国際標準語彙集（ISO/IEC/IEEE規格）
+
+* **規格名:** ISO/IEC/IEEE 24765:2017 Systems and software engineering — Vocabulary
+* **URL:** [https://arxiv.org/pdf/2607.06004](https://arxiv.org/pdf/2607.06004) *(※検証・評価を目的とした査読論文内の言及)*
+* **概要:**
+IEEEおよびISOが共同で定義するシステム・ソフトウェア工学の公式ボキャブラリー規格です。
+* **Error:** 「期待値と観測・測定値との差異」、または「不正確な結果を生む人間の行動（Mistake）」。
+* **Fault:** 「プログラム内における不正確なステップ、プロセス、またはデータ定義」。
+* **Failure:** 「システムまたはコンポーネントが、定められた性能要件内で要求機能を実行できなくなること」。
+
+
+
+##### 【文献3】ソフトウェアのフォールトトレランスに関するサーベイ論文
+
+* **タイトル:** Software Fault Tolerance in Real-Time Systems: Identifying the Future Research Questions
+* **著者:** F. Reghenzani, Z. Guo, W. Fornaciari (ACM Computing Surveys)
+* **発行年:** 2023年
+* **URL:** [https://zguo32.wordpress.ncsu.edu/files/2023/04/Reghenzani-and-Guo-2023-Software-Fault-Tolerance-in-Real-Time-Systems-Ide.pdf](https://zguo32.wordpress.ncsu.edu/files/2023/04/Reghenzani-and-Guo-2023-Software-Fault-Tolerance-in-Real-Time-Systems-Ide.pdf)
+* **概要:**
+IEEE Standard 610.12に基づき、実世界のシステム挙動を基に区別しています。メモリ上のビット反転（Fault）が、計算値を本来の「10m」から「26m」へ書き換える（Error）が、この変数を使用しない限り、外部への出力異常（Failure）には至らない、という具体例を交えて説明しています。
+
+---
+
+#### ② ソフトウェアテスト・開発プロセスにおける定義
+
+##### 【文献4】テスト技術者の国際標準（ISTQB）に基づく実態調査
+
+* **タイトル:** A Case Study: Software Defect Root Causes
+* **著者:** L. Bergmane, J. Grabis, E. Zeiris
+* **発行年:** 2017年
+* **URL:** [https://itms-journals.rtu.lv/article/download/itms-2017-0009/2797](https://itms-journals.rtu.lv/article/download/itms-2017-0009/2797)
+* **概要:**
+ソフトウェアテストの標準化団体であるISTQB（International Software Testing Qualifications Board）の定義をベースにしています。
+* **Bug（Defectと同義）:** 人間の**Error**によってコード内に埋め込まれた欠陥。
+* **Failure:** そのBugを含むコードが実際に実行された時に現れる現象。
+本論文では、開発者がいかにErrorを犯し、それがどうコードの欠陥に繋がるかの根本原因（Root Cause）を分析しています。
+
+
+
+##### 【文献5】ソフトウェア「アノマリー（異常）」の分類規格
+
+* **規格名:** IEEE Std 1044-1993 (R2002) Standard Classification for Software Anomalies
+* **URL:** [https://elib.dlr.de/211400/1/How%20Industry%20Tackles%20Anomalies%20during%20Runtime.pdf](https://elib.dlr.de/211400/1/How%20Industry%20Tackles%20Anomalies%20during%20Runtime.pdf) *(※本規格を採用したランタイム監視の検証論文)*
+* **概要:**
+不具合報告やライフサイクル管理における「アノマリー（Anomaly：期待値からの逸脱）」の標準分類法です。
+* 開発者が自身で気づいた誤りを「**Error**」、テスターが検出したコード上の問題を「**Defect / Bug**」、エンドユーザーが遭遇した実害を「**Fault / Failure**」とし、ライフサイクル上の「発見者やフェーズ」による呼び分けの基準を提示しています。
+
+
+
+##### 【文献6】バグの再現性とライフサイクルの研究
+
+* **タイトル:** Reproducibility of Software Bugs
+* **著者:** F. Frattini, R. Pietrantuono, S. Russo
+* **発行年:** 2016年
+* **URL:** [http://wpage.unina.it/roberto.pietrantuono/papers/CHAPTER_SPRINGER.pdf](http://wpage.unina.it/roberto.pietrantuono/papers/CHAPTER_SPRINGER.pdf)
+* **概要:**
+本論文は、「Bug（バグ）」をアプリケーションコード内の「**Fault**」と定義しています。バグ（Fault）が実行時に「アクティベート」されて初めて「**Error**」状態に遷移し、さらにそれがいくつかのステップを伝って表面化することで「**Failure**」へと至るプロセス（バグの再現性）を科学的に論じています。
+
+---
+
+#### ③ 開発者の認知心理・システム設計視点
+
+##### 【文献7】プログラミング中の「Error（人間の誤り）」のモデル化
+
+* **タイトル:** Development and Evaluation of a Model of Programming Errors
+* **著者:** A. J. Ko, B. A. Myers
+* **発行年:** 2003年
+* **URL:** [https://www.cs.cmu.edu/~NatProg/papers/Ko2003ModelOfErrors.pdf](https://www.cs.cmu.edu/~NatProg/papers/Ko2003ModelOfErrors.pdf)
+* **概要:**
+プログラミングにおける「**Error**」を人間の認知機能（ワーキングメモリの限界、仕様への誤解、タイポ等）の観点からモデル化した学術論文です。人間による行動の失敗としての「Error」が、プログラムの記述ミスとしての「Bug（Fault）」へ繋がる境界を心理学的に分析しています。
+
+##### 【文献8】自己修復型ソフトウェアのモデルと不具合分類
+
+* **タイトル:** A Modeling Framework for Self-Healing Software Systems
+* **著者:** M. Jiang, et al.
+* **発行年:** 2007年
+* **URL:** [https://st.inf.tu-dresden.de/MRT07/papers/MRT07_Jiangl_etall.pdf](https://st.inf.tu-dresden.de/MRT07/papers/MRT07_Jiangl_etall.pdf)
+* **概要:**
+システムが自律的に異常を検知・復旧する「自己修復（Self-Healing）」の文脈で4用語を定義しています。
+* システムがエラー状態（**Error**）から復旧できない場合に、外部へのサービスの提供が止まること（**Failure**）を定義。
+* 自己修復機能は「**Failure**」に至る前に、内部の「**Error**（異常値の検知）」をフィルタリングして「**Fault**」を隔離・解決することを目指す仕組みとして整理されています。
+
+
+
+---
+
+### 3. まとめ：関係性を表すイメージ
+
+これら4つの言葉の関係性は、以下のような一方向のドミノ倒し（因果の連鎖）として整理できます。
+
+$$\text{Error (人間のミス)} \longrightarrow \text{Bug / Fault (コードの欠陥)} \longrightarrow \text{Error (異常なデータ状態)} \longrightarrow \text{Failure (プログラムの強制終了・機能停止)}$$
+
+開発やテスト、またはシステムの安全設計を行う際は、どのフェーズのどの状態を指しているのか（人為的なものか、プログラムの静的な状態か、実行時のシステム状態か、外部へ見えている事象か）を上記のように厳密に区分けして議論されます。
+
