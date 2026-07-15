@@ -1234,3 +1234,93 @@ $$\text{Error (人間のミス)} \longrightarrow \text{Bug / Fault (コードの
 
 開発やテスト、またはシステムの安全設計を行う際は、どのフェーズのどの状態を指しているのか（人為的なものか、プログラムの静的な状態か、実行時のシステム状態か、外部へ見えている事象か）を上記のように厳密に区分けして議論されます。
 
+# Q2 決定表の社会科学、自然科学、人文科学における定義の違いとそれぞれの参考文献を８つURLつきで示してください。
+A2
+決定表（デシジョンテーブル）は、一般的に「複数の条件と、それに対応して実行すべきアクションをマトリクス形式で整理した表」と定義されます。しかし、その概念が扱われる領域（自然科学、社会科学、人文科学）によって、前提となる思想や分析目的、定義のニュアンスに大きな違いが存在します。
+
+それぞれの領域における定義の違いと、学術的・実用的な観点から厳選した計8つの参考文献（URL付き）を整理して紹介します。
+
+---
+
+### 1. 自然科学（情報科学・工学を含む）における定義
+
+* **定義：**
+極めて厳密な数学的・論理的モデルとして定義されます。条件（入力）とアクション（出力）の組み合わせを排他的かつ網羅的に整理した、「決定論的な論理ゲート・アルゴリズムの可視化ツール」です。システム設計やソフトウェアテストにおける仕様の不備（矛盾や漏れ）を検証・証明するための代数的構造、あるいは予測分類器として位置づけられます。
+* **特徴：**
+二値（True / False）または多値論理に基づき、人間による解釈の曖昧さを一切排除した仕様記述（形式手法）や機械学習の決定木生成の基盤として扱われます。
+
+### 2. 社会科学における定義
+
+* **定義：**
+経営学、経済学、公共政策、社会学などにおいて、「不確実性下における意思決定ルールを構造化・最適化するための意思決定支援フレームワーク」と定義されます。人間の認知的限界を補い、組織内での「ポリシー（ルール）」や業務基準を統一化するための実践的なツールとしての側面が強調されます。
+* **特徴：**
+近年では、質的比較分析（QCA: Qualitative Comparative Analysis）における「真理表（Truth Table）」と接続され、特定の社会的帰結（例：政策の成功、企業の存続など）をもたらす複数の複雑な条件の組み合わせ（因果的構成）を整理する形式としても活用されます。
+
+### 3. 人文科学における定義
+
+* **定義：**
+哲学（論理学、応用倫理学）、認知人類学、言語学などにおいて、「人間の認知スキーマ、言語記述ルール、あるいは道徳・解釈の決定ロジックを定性的にモデル化する構造」として再定義されます。
+* **特徴：**
+例えば、文化人類学における「エスノグラフィック決定モデル（EDM）」では、特定集団の行動選択（例：リサイクルをするか否か、どの治療法を選ぶか）を規定する暗黙の文化規範や認知基準を体系化するのに用いられます。自然科学のようにプログラムを動かすための厳密さではなく、**人間の複雑な判断プロセスを言語的・解釈学的にすくい取るためのマップ**として捉えられます。
+
+---
+
+### 各領域における定義の比較一覧
+
+| 項目 | 自然科学（情報・工学） | 社会科学（経営・政策・QCA） | 人文科学（認知人類学・論理学・哲学） |
+| --- | --- | --- | --- |
+| **主な定義** | アルゴリズム・論理設計の検証用マトリクス | 意思決定の構造化およびルール定義ツール | 人間の認知スキーマおよび文化的選択基準のモデル |
+| **対象** | システム入力、テストケース、論理回路 | 組織のポリシー、ビジネスルール、経営環境要因 | 行動決定ルール、言語構造、道徳判断基準 |
+| **重視される性質** | 排他性、網羅性、数学的一貫性 | 多元的な因果関係（等価多元性）、実用性 | 人間の心理的リアリティ、定性的解釈可能性 |
+
+---
+
+### 4. 参考文献（全8本・URL付き）
+
+#### ■ 自然科学（情報科学・工学分野）
+
+* **[参考文献1]：** **Decision tables: Formalisation, validation, and verification**
+* **概要：** 決定表を形式的に定式化し、システムの一貫性（整合性）と網羅性を厳密なアルゴリズムで検証する手法を提唱したソフトウェア工学の古典的論文。
+* **URL：** [https://scispace.com/pdf/decision-tables-formalisation-validation-and-verification-50wfl98ml5.pdf](https://scispace.com/pdf/decision-tables-formalisation-validation-and-verification-50wfl98ml5.pdf)
+
+
+* **[参考文献2]：** **The Power of Decision Tables**
+* **概要：** スタンフォード大学が発表した、機械学習の分類アルゴリズム（決定表分類器：DTM）としての決定表の表現能力と、最適な特徴選択手法についての科学的研究。
+* **URL：** [https://robotics.stanford.edu/~ronnyk/tables.pdf](https://robotics.stanford.edu/~ronnyk/tables.pdf)
+
+
+* **[参考文献3]：** **Deterministic and Nondeterministic Decision Trees for Decision Tables with Many-Valued Decisions**
+* **概要：** 多数の決定候補（多値決定）を持つ複雑な決定表を決定木へ変換する際の計算量や幾何学的最適性を数学的に探究した最新の基礎理論論文。
+* **URL：** [https://repository.kaust.edu.sa/bitstreams/ee079cdb-9c40-4940-b6ee-68050627518a/download](https://repository.kaust.edu.sa/bitstreams/ee079cdb-9c40-4940-b6ee-68050627518a/download)
+
+
+
+#### ■ 社会科学（経営学・組織論・社会学分野）
+
+* **[参考文献4]：** **Decision Tables - Management Services**
+* **概要：** 米国ミシシッピ大学リポジトリ蔵。ビジネス現場における意思決定ルールを従業員やコンピュータが実行可能な「決定ルール」として構造化する手順を体系化した実務管理論の草分け的文献。
+* **URL：** [https://egrove.olemiss.edu/cgi/viewcontent.cgi?article=1059&context=mgmtservices](https://egrove.olemiss.edu/cgi/viewcontent.cgi?article=1059&context=mgmtservices)
+
+
+* **[参考文献5]：** **Enhanced Decision Modelling through a Decision Table Engineering Workbench**
+* **概要：** ルーヴェン・カトリック大学（ベルギー）による、組織の意思決定ロジックを決定表として定式化し、ビジネスプロセスモデリングにシームレスに統合するための理論。
+* **URL：** [https://lirias.kuleuven.be/retrieve/c7d08377-ae01-413a-9a24-8ea80d0d2c8a](https://lirias.kuleuven.be/retrieve/c7d08377-ae01-413a-9a24-8ea80d0d2c8a)
+
+
+* **[参考文献6]：** **Designing Global Sourcing Strategy for Cost Savings and Innovation: A Configurational Approach**
+* **概要：** 企業のグローバル調達戦略において、コスト削減とイノベーションに繋がる要因をフジーセット質的比較分析（fsQCA）を用い、決定表（真理表）に基づいた組み合わせとして記述・分析した社会科学的論文。
+* **URL：** [https://pmc.ncbi.nlm.nih.gov/articles/PMC7674846/](https://pmc.ncbi.nlm.nih.gov/articles/PMC7674846/)
+
+
+
+#### ■ 人文科学（認知人類学・行動科学・質的分析分野）
+
+* **[参考文献7]：** **Ethnographic Decision Tree Modeling**
+* **概要：** 文化人類学者クリスティーナ・グラドウィン（Christina H. Gladwin）の著書（HathiTrust目録）。「ある集団の人々がなぜそのような行動行動をとるのか」という文化規範・認知プロセスを決定樹（決定表の階層表現）でモデル化するエスノグラフィーの代表的技法を提示。
+* **URL：** [https://catalog.hathitrust.org/Record/001843836](https://catalog.hathitrust.org/Record/001843836)
+
+
+* **[参考文献8]：** **Testing an Ethnographic Decision Tree Model on a National Sample: Recycling Beverage Cans**
+* **概要：** 「なぜ空き缶をリサイクルするのか・しないのか」という市井の人々の定性的な行動規範・道徳的判断ルールを認知決定ツールの形式でモデル化し、その妥当性を実際に検証した応用人文科学論文。
+* **URL：** [https://www.researchgate.net/publication/277363205_Testing_an_Ethnographic_Decision_Tree_Model_on_a_National_Sample_Recycling_Beverage_Cans](https://www.researchgate.net/publication/277363205_Testing_an_Ethnographic_Decision_Tree_Model_on_a_National_Sample_Recycling_Beverage_Cans)
+* 
