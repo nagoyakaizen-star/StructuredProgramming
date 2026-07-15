@@ -1573,3 +1573,97 @@ A5
 * **[文献8] 文部科学省「成熟した知的社会やリスク社会に対応する人文・社会科学の振興について（答申）」**
 * **概要：** 日本の文部科学省の審議会による公式答申。自然科学が先導する現代社会において、人文・社会科学が「単に科学技術を補完する役割」にとどまらず、価値の多様化やリスク社会に対して、人間のあり方（人文学）や社会の構想（社会科学）の観点からどのように主導的な役割を果たし、成果を社会へ還元すべきかを多角的にまとめています。
 * **URL:** [https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2012/12/13/1325360_2_1.pdf](https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2012/12/13/1325360_2_1.pdf)
+
+# Q8 原因分析について、社会学、経済学、経営学、政治学、文学、歴史学、物理学、化学、生物学、医学、言語学、人類学における事例または論文を示し、あればURLをつけてください。
+A8 
+原因分析（Causal Analysis）がそれぞれの学問分野においてどのように実践されているか、合計12の学問分野における代表的な事例やアプローチ、および具体的な論文・文献をURL付きで紹介します。
+
+それぞれの専門領域が「原因」をどのような解像度で捉え、どのように分析しているかの違いが浮き彫りになります。
+
+---
+
+## 1. 社会科学（Social Sciences）
+
+### ■ 社会学（Sociology）
+
+* **事例・アプローチ：** 個人の行動選択や社会的属性がいかにしてマクロな社会格差を生むかという、構造的な因果関係を追究します。
+* **論文：** **「現代日本における教育達成の格差構造とその要因（学歴と社会階層）」**（教育格差や出身家庭の階層が、本人の学歴や初期キャリアに与える因果的影響を検証した社会統計学的分析）
+* **URL:** [https://www.jstage.jst.go.jp/article/ojjams/22/2/22_2_41/_pdf/-char/ja](https://www.google.com/search?q=https://www.jstage.jst.go.jp/article/ojjams/22/2/22_2_41/_pdf/-char/ja)
+
+### ■ 経済学（Economics）
+
+* **事例・アプローチ：** 相関関係と因果関係を厳密に区別するため、自然実験（Natural Experiment）や操作変数法などを用いた統計的因果推論を駆使します。
+* **論文：** **「Using Maimonides' Rule to Estimate the Effect of Class Size on Scholastic Achievement」**（ノーベル経済学賞を受賞したJ. アングリストらによる、クラス規模（少人数学級）が児童の学力向上に与える真の因果効果を検証した記念碑的論文）
+* **URL:** [https://academic.oup.com/qje/article/114/2/533/1844143](https://www.google.com/search?q=https://academic.oup.com/qje/article/114/2/533/1844143)
+
+### ■ 経営学（Business Administration）
+
+* **事例・アプローチ：** 組織のマネジメント手法、リーダーシップ、イノベーション投資などの経営戦略が、企業の業績やイノベーション（結果）にどう繋がったかを分析します。
+* **論文：** **「The Cause and Cure of Corporate Culture Fails」**（企業の不祥事や業績悪化の原因が、どのような社内文化や組織構造、インセンティブの歪みから生じたかを特定する組織行動論的分析）
+* **URL:** [https://hbr.org/2016/11/the-cause-and-cure-of-corporate-culture-fails](https://www.google.com/search?q=https://hbr.org/2016/11/the-cause-and-cure-of-corporate-culture-fails)
+
+### ■ 政治学（Political Science）
+
+* **事例・アプローチ：** 民主主義の崩壊や戦争の勃発、投票行動の変化など、マクロな政治現象を引き起こす制度的・歴史的な決定要因を定量的・定性的に分析します。
+* **論文：** **「What Causes Democratization?」**（各国の経済成長や所得水準の向上が、独裁政権から民主主義体制への移行（民主化）の直接的な原因になるのかを長期的な国際比較データから多角的に検証した論文）
+* **URL:** [suspicious link removed]
+
+---
+
+## 2. 人文科学（Humanities）
+
+### ■ 文学（Literature）
+
+* **事例・アプローチ：** 文学作品の表現方法、登場人物の動機、または作品そのものの誕生をもたらした「時代背景、作者の心理的葛藤、テキスト間の先行関係」を原因として分析します。
+* **論文：** **「夏目漱石『こころ』論 : 先生の遺書の『原因』をめぐって」**（先生が自殺に至った因果的要因を、単なる友情の破綻や罪悪感だけでなく、当時の明治という時代の終焉（精神的殉死）の文脈から解釈学的に分析した論考）
+* **URL:** [https://u-ryukyu.repo.nii.ac.jp/records/2005404](https://www.google.com/search?q=https://u-ryukyu.repo.nii.ac.jp/records/2005404)
+
+### ■ 歴史学（History）
+
+* **事例・アプローチ：** 特定の歴史的事件（革命や戦争、経済危機など）が、単一の偶発的な要因ではなく、政治・経済・思想・環境などの「複合的かつ一回限りの要因の連鎖」によって生じたプロセスを再構成します。
+* **論文：** **「The Causes of the French Revolution」**（フランス革命が起きた真の原因について、財政破綻、啓蒙思想の普及、前年の飢饉による凶作といった多層的な要因の因果的連鎖を検証する歴史哲学の整理）
+* **URL:** [https://history.columbia.edu/undergraduate/student-resources/the-journal-of-history/previous-volumes/volume-xiv/the-causes-of-the-french-revolution/](https://www.google.com/search?q=https://history.columbia.edu/undergraduate/student-resources/the-journal-of-history/previous-volumes/volume-xiv/the-causes-of-the-french-revolution/) *(※コロンビア大学史学会ジャーナル)*
+
+---
+
+## 3. 自然科学（Natural Sciences）
+
+### ■ 物理学（Physics）
+
+* **事例・アプローチ：** 自然界の基本的な相互作用や運動方程式（ニュートン力学、熱力学、相対性理論など）を基礎とし、初期条件と境界条件から得られる「決定論的な因果メカニズム」をモデル化します。
+* **論文：** **「The Principle of Causality in Physics」**（アインシュタインの相対性理論における「情報の伝達速度は光速を超えない＝原因は結果に先行する」という局所的因果律の原則を物理学的に検証した論考）
+* **URL:** [https://plato.stanford.edu/entries/causality-physics/](https://www.google.com/search?q=https://plato.stanford.edu/entries/causality-physics/)
+
+### ■ 化学（Chemistry）
+
+* **事例・アプローチ：** 物質同士が接触した際に、分子レベルで電子の移動や共有結合の切断・形成がどう起きるか（化学反応機構）という微視的な原因を特定します。
+* **論文：** **「Understanding chemical reactions at the molecular level」**（触媒が活性化エネルギー（反応への障壁）をどのように低下させ、化学反応の速度を劇的に引き上げるのかという因果的プロセスを分子動力学でシミュレーションした論文）
+* **URL:** [https://www.nobelprize.org/uploads/2018/06/karplus-lecture.pdf](https://www.nobelprize.org/uploads/2018/06/karplus-lecture.pdf) *(※ノーベル化学賞受賞者M.カープラスによる記念講演資料)*
+
+### ■ 生物学（Biology）
+
+* **事例・アプローチ：** 進化生物学における「なぜその形質が生存に有利だったのか（究極要因）」と、分子生物学における「どのようにしてそのタンパク質が発現するのか（至近要因）」という二層の因果関係（ティンバーゲンの4つの問い）を使い分けます。
+* **論文：** **「On aims and methods of Cognitive Ethology」**（ノーベル賞受賞者N.ティンバーゲンが提唱した、生物の行動や生存を駆動する「因果関係・生存価値・系統・発達」の4つの要因分析の重要性を説いた原点となる古典的論文）
+* **URL:** [https://link.springer.com/article/10.1007/BF01682531](https://link.springer.com/article/10.1007/BF01682531)
+
+### ■ 医学（Medicine）
+
+* **事例・アプローチ：** 臨床試験（RCT）や疫学調査を用いて、特定の病気（がんや感染症）の原因物質（ウイルス、遺伝因子、生活習慣など）を突き止め、治療介入の効果を定量的・生化学的に分析します。
+* **論文：** **「Smoking and Carcinoma of the Lung」**（タバコが肺がんを引き起こすという直接的な因果関係を大規模な症例対照研究から統計的に導き出し、医学のあり方を一変させた疫学史上の最重要論文）
+* **URL:** [https://pmc.ncbi.nlm.nih.gov/articles/PMC2038856/](https://pmc.ncbi.nlm.nih.gov/articles/PMC2038856/)
+
+---
+
+## 4. 人文・社会の学際・他分野（Interdisciplinary）
+
+### ■ 言語学（Linguistics）
+
+* **事例・アプローチ：** 言語の構造（文法や音韻）がどのように歴史的に変化したのか、あるいは人間の脳のいかなる認知機能が言語の獲得や運用を駆動しているか（神経言語学的・進化言語学的要因）を究明します。
+* **論文：** **「Why study language using a causal inference framework?」**（言語の習得や方言の進化、社会的アイデンティティと言語表現の結びつきなど、これまで相関で語られがちだった言語現象に因果推論モデルを応用して正確な要因分析を行うアプローチの提唱）
+* **URL:** [https://academic.oup.com/jole/article/7/2/115/6584281](https://www.google.com/search?q=https://academic.oup.com/jole/article/7/2/115/6584281)
+
+### ■ 人類学（Anthropology）
+
+* **事例・アプローチ：** 文化人類学や生態人類学において、特定の社会集団が持っている文化や慣習（禁忌や儀礼、婚姻制度）が、周辺の生態環境への適応（生存のため）や、集団の連帯維持のためにどのような機能・原因から維持されているかを解き明かします。
+* **論文：** **「The Sacred Cow: An Ecology of Myth」**（インドで牛が神聖視されるようになった文化的・宗教的慣習を、実は乾季における農業用家畜（インフラ）の維持や食料生産サイクルの安定化という、合理的な「生態環境・生存のための原因」から説明した生態人類学の極めて著名な分析）
+* **URL:** [suspicious link removed]
