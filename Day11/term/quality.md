@@ -560,3 +560,164 @@ print(f"\n2回以上引用された重要文献（{len(df_important)}件）を '
 2. **「品質」と「管理」の交差点を探す**
 * 片方の分野（品質だけ、管理だけ）で多く引用されている文献は、その分野の専門道具です。
 * **両方の分野から満遍なく引用されている文献**（例：双方のIDが混ざっているもの）があれば、それこそが「ソフトウェア工学全体におけるLLM活用の基本設計思想」を定義している最重要論文です。
+
+# Q8 それぞれの論文の単語出現頻度表を作りたいです。従来はAWKのスクリプトで一つづつ処理していました。複数の文献の単語出現頻度表をそれぞれ作るのに、自動化スクリプトをご提示くださ
+A8
+AWKを使った単発の処理からPythonによる自動化へ移行すると、複数ファイルを一括処理して結果を個別のCSVに保存する工程を、わずか数秒で完結できるようになります。
+
+特に論文（PDFやテキスト）を対象にする場合、単語を小文字に統一し、記号を取り除き、さらに「the」「of」「and」といった分析の邪魔になる一般的な単語（ストップワード）を除外する処理まで自動化するのが効率的です。
+
+以下に、指定したフォルダ内にあるすべてのテキストファイル（`.txt`）を自動で読み込み、それぞれの単語出現頻度表をCSVとして出力するPythonスクリプトを提示します。
+
+### 複数文献の単語出現頻度表を自動生成するスクリプト
+
+事前にPython環境で特別なライブラリをインストールする必要はありません（標準ライブラリのみで動作します）。
+
+```python
+import collections
+import csv
+import glob
+import os
+import re
+
+# ==============================================================================
+# 設定項目
+# ==============================================================================
+# 論文のテキストファイルが保存されているフォルダのパス
+INPUT_DIR = "./papers"
+# 結果のCSVファイルを保存するフォルダのパス
+OUTPUT_DIR = "./word_frequencies"
+
+# 除外したい一般的な単語（ストップワード）のリスト（必要に応じて追加してください）
+STOP_WORDS = {
+    "the",
+    "a",
+    "an",
+    "and",
+    "or",
+    "but",
+    "in",
+    "on",
+    "at",
+    "to",
+    "for",
+    "of",
+    "with",
+    "by",
+    "is",
+    "are",
+    "was",
+    "were",
+    "be",
+    "been",
+    "this",
+    "that",
+    "it",
+    "as",
+    "from",
+    "which",
+}
+
+# ==============================================================================
+# 処理本体
+# ==============================================================================
+
+
+def process_file(file_path, output_dir):
+    # 保存先フォルダが存在しない場合は作成
+    os.makedirs(output_dir, exist_ok=True)
+
+    # ファイル名の取得と出力先CSVパスの生成
+    base_name = os.path.basename(file_path)
+    file_id, _ = os.path.splitext(base_name)
+    output_csv_path = os.path.join(output_dir, f"{file_id}_word_freq.csv")
+
+    print(f"処理中: {base_name} ...")
+
+    try:
+        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+            text = f.read()
+
+        # 全て小文字に変換
+        text_lowercase = text.lower()
+
+        # 正規表現を使って「単語（アルファベットと数字の並び）」だけを抽出
+        # これによりピリオド、カンマ、括弧などの記号が自動的に除去されます
+        words = re.findall(r"\b\w+\b", text_lowercase)
+
+        # ストップワードの除去、および数字だけの項目（"1", "2026"など）を除外
+        filtered_words = [
+            w for w in words if w not in STOP_WORDS and not w.isdigit()
+        ]
+
+        # 単語の出現頻度をカウント
+        word_counts = collections.Counter(filtered_words)
+
+        # 出現回数が多い順にソートしてCSVに出力
+        with open(output_csv_path, "w", encoding="utf-8-sig", newline="") as f_csv:
+            writer = csv.writer(f_csv)
+            writer.writerow(["Word", "Frequency"])  # ヘッダー
+
+            # 最も頻度の高いものから順に書き込み
+            for word, count in word_counts.most_common():
+                writer.writerow([word, count])
+
+        print(f" -> 保存完了: {output_csv_path}")
+
+    except Exception as e:
+        print(f" ✕ エラー ({base_name}): {e}")
+
+
+def main():
+    # 指定フォルダ内の .txt ファイルをすべて取得
+    search_path = os.path.join(INPUT_DIR, "*.txt")
+    target_files = glob.glob(search_path)
+
+    if not target_files:
+        print(
+            f"指定されたフォルダ '{INPUT_DIR}' に .txt ファイルが見つかりませんでした。"
+        )
+        return
+
+    print(f"合計 {len(target_files)} 件のファイルを処理します。")
+
+    for file_path in target_files:
+        process_file(file_path, OUTPUT_DIR)
+
+    print("\nすべての処理が完了しました。")
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+### スクリプトのポイント
+
+1. **一括自動ループ (`glob`)**
+`INPUT_DIR` に指定したフォルダ内の `.txt` ファイルを自動的にすべて検出し、ループで順次処理します。ファイルが10冊あっても100冊あっても、スクリプトを一回実行するだけで済みます。
+2. **ノイズの自動除去 (`re` と `STOP_WORDS`)**
+AWKで愚直にスペース分割すると残りやすい `.` や `,` などの記号を正規表現で綺麗に弾きます。また、論文中で頻出する割に意味を持たない `the` や `of` などのストップワードもまとめて除外するため、最初から「意味のあるキーワード」に絞られた頻度表が手に入ります。
+3. **高速なカウント (`collections.Counter`)**
+Pythonの標準高速カウンタを使用しているため、数万単語に及ぶ長大な論文でも一瞬で集計・ソートが完了します。
+4. **Excelフレンドリーな出力 (`utf-8-sig`)**
+出力されるCSVは `utf-8-sig` という文字コードで保存されるため、そのままExcelやGoogleスプレッドシートで開いても文字化けしません。
+
+### もし元の論文データが「PDF」の場合
+
+もし手元にある文献がテキスト（`.txt`）ではなくPDF形式（`.pdf`）である場合は、あらかじめテキスト抽出を行う必要があります。その場合は、事前にターミナルで `pip install pypdf` を実行してライブラリを導入し、上記のコードの読み込み部分（`with open(...)`）を以下のように書き換えるだけで対応可能です。
+
+```python
+from pypdf import PdfReader
+
+# PDFからテキストを抽出するコード例
+reader = PdfReader(file_path)
+text = ""
+for page in reader.pages:
+    text += page.extract_text() or ""
+
+```
+
+AWKによる個別処理の手間をなくし、分析のコアとなる「重要単語の読み解き」に時間を充ててみてください。
+
+こちらの[Pythonを用いた文字列の単語出現頻度カウントの基本解説動画](https://www.youtube.com/watch?v=TKfXfQpX0Uw)では、テキストから単語を切り出してハッシュテーブル（辞書型）を使ってカウントしていく内部的な仕組みが分かりやすく解説されており、スクリプトのロジックをより深く理解する参考になります。
