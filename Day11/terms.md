@@ -1,6 +1,7 @@
 wikipediaの本文は引用しない。URLの中身はOK.
 
-仕様のURLもWikipedia以外。
+仕様、参考文献のURLもWikipedia以外。
+
 ## Q1 ISO/IEC/IEEE 24765 は該当JISはありますか
 A1 by Gemini
 
