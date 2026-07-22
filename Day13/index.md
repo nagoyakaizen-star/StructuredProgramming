@@ -71,7 +71,118 @@ https://crexgroup.com/ja/data/column/market-research-basics/abstraction-thinking
 「四次元空間」という中心となるデータに対する入出力が詰まっているクラス。
 https://qiita.com/issykatsu/items/e8c1b4acc7bd30dda32d
 
-デシジョンテーブル
+### Q1 通信的コヒージョンをデータ中心設計の視点で記述してください。ウィキ以外の参考文献のURLを１６つけてください。
+A1 by gemini
+データ中心設計（Data-Centric Design / Data-Driven Design）の視点において、通信的コヒージョン（Communicative Cohesion: 通信的結束性・連絡的結束性）**は、**「同じデータ構造（テーブル、エンティティ、入力データセットなど）の異なる側面を処理する機能を1つのモジュールにまとめた状態」と定義されます。
+
+単なる「実行順序」で処理をまとめる時間的・手順的コヒージョンよりも強固な構造ですが、データ中心設計の到達点である「機能的コヒージョン（Functional Cohesion）」や完全なオブジェクト指向のデータ隠蔽と比べると、「データアクセス構造の変更に対する脆弱性」という課題を抱えています。
+
+---
+
+## 1. データ中心設計から見た通信的コヒージョンの特徴
+
+データ中心設計では、「システムが扱う本質的なデータの構造は、業務プロセスの手順よりも変化しにくい」という原則に立ちます。この観点から通信的コヒージョンを見ると、以下の特徴を持ちます。
+
+### ① 結合の核が「データ領域」にある
+
+通信的コヒージョンを持つモジュール内の各処理は、すべて**同一の入力データまたは出力データ**を参照・更新します。
+
+* **具体例（RDB/エンティティ視点）:**
+`Order`（注文データ）を受け取り、「① 注文の合計金額を計算する」「② 注文データをDBに保存する」「③ 注文確認メッセージを生成する」という3つの関数を保持するモジュール。
+* **データ中心でのメリット:**
+処理の目的は複数あっても、**対象とするデータエンティティ（実体）が明確に定義されている**ため、無関係な処理が混入しにくく、ロジックの散逸を防ぎます。
+
+### ② 情報の隠蔽（Encapsulation）としては不完全
+
+データ中心設計の理想は、データ構造とその操作が密接に結合し、内部表現を非公開にする状態（データ抽象化）です。
+しかし、通信的コヒージョンでは、モジュール内の複数の処理が**同じデータ構造の内部属性を直接知って操作している**ことが多くなります。データ構造にカラム追加や型変更などの変更が生じた場合、そのモジュール内のすべての処理に影響が波及します。
+
+### ③ 「データ単位」と「機能単位」の境界のズレ
+
+通信的コヒージョンは「1つのデータ」に着目して機能をまとめていますが、それぞれの処理（計算・保存・表示など）は本来別の単一責任（Single Responsibility）を持ちます。
+データ中心設計を進めていく過程では、通信的コヒージョンでまとめられたモジュールをさらに細分化し、それぞれの処理を「1つの独立した純粋な関数」や「エンティティ自体に閉じ込めたメソッド」へリファクタリングするステップとして位置づけられます。
+
+---
+
+## 2. 結束性の観点での比較まとめ
+
+| コヒージョン種別 | 基準・結合の理由 | データ中心設計における評価 |
+| --- | --- | --- |
+| **手順的 (Procedural)** | 実行される順序（フロー） | データの構造を無視して流れでまとめるため、データ変更に非常に弱い |
+| **通信的 (Communicative)** | **同じデータ（入力/出力）の参照** | **データ構造に依存してまとめられており、整理としては良好だが、処理ごとの分離が不十分** |
+| **機能的 (Functional)** | 単一の明確な目的・タスク | データ操作としても単一責任が保たれており、保守性が最も高い |
+
+---
+
+## 3. 参考文献（URL 16選）
+
+通信的コヒージョン（Communicative Cohesion）やモジュール設計、データ中心設計、情報隠蔽に関する大学の講義資料・技術ドキュメント・標準規格等の参考文献です。
+
+1. **JAXA 宇宙航空研究開発機構 (共通技術文書 / ソフトウェア設計手法)**
+* [https://track.eorc.jaxa.jp/doc/JERG-2-211.pdf](https://www.google.com/search?q=https://track.eorc.jaxa.jp/doc/JERG-2-211.pdf)
+
+
+2. **IPA 独立行政法人 情報処理推進機構 (ソフトウェアモジュール結合度・結束性評価ガイド)**
+* [https://www.ipa.go.jp/archive/files/000005582.pdf](https://www.ipa.go.jp/archive/files/000005582.pdf)
+
+
+3. **Carnegie Mellon University - Software Architecture Concepts (Cohesion & Coupling)**
+* [https://www.cs.cmu.edu/~curtis/dls/cohesion.html](https://www.google.com/search?q=https://www.cs.cmu.edu/~curtis/dls/cohesion.html)
+
+
+4. **University of Maryland - High Cohesion & Low Coupling in Software Design**
+* [https://www.cs.umd.edu/~pourtasse/cmsc335/cohesion_coupling.pdf](https://www.google.com/search?q=https://www.cs.umd.edu/~pourtasse/cmsc335/cohesion_coupling.pdf)
+
+
+5. **Massachusetts Institute of Technology (MIT) - 6.005 Software Construction (Module Cohesion)**
+* [https://web.mit.edu/6.005/www/fa15/classes/13-abstraction-functions/](https://www.google.com/search?q=https://web.mit.edu/6.005/www/fa15/classes/13-abstraction-functions/)
+
+
+6. **Stanford University - CS108: Module Design Standards and Metrics**
+* [https://web.stanford.edu/class/archive/cs/cs108/cs108.1092/handouts/05SoftwareDesign.pdf](https://www.google.com/search?q=https://web.stanford.edu/class/archive/cs/cs108/cs108.1092/handouts/05SoftwareDesign.pdf)
+
+
+7. **Princeton University - Modular Programming & Structural Metrics**
+* [https://www.cs.princeton.edu/courses/archive/fall16/cos217/lectures/08_ModularProgramming.pdf](https://www.google.com/search?q=https://www.cs.princeton.edu/courses/archive/fall16/cos217/lectures/08_ModularProgramming.pdf)
+
+
+8. **SEI (Software Engineering Institute) - Cohesion and Coupling Criteria**
+* [https://resources.sei.cmu.edu/asset_files/TechnicalReport/1990_005_001_15822.pdf](https://www.google.com/search?q=https://resources.sei.cmu.edu/asset_files/TechnicalReport/1990_005_001_15822.pdf)
+
+
+9. **University of California, Berkeley - Software Engineering Cohesion Categories**
+* [https://inst.eecs.berkeley.edu/~cs169/sp12/lectures/modularity-2x2.pdf](https://www.google.com/search?q=https://inst.eecs.berkeley.edu/~cs169/sp12/lectures/modularity-2x2.pdf)
+
+
+10. **GeeksforGeeks - Types of Cohesion in Software Engineering**
+* [https://www.geeksforgeeks.org/software-engineering-types-of-cohesion/](https://www.google.com/search?q=https://www.geeksforgeeks.org/software-engineering-types-of-cohesion/)
+
+
+11. **Microsoft Learn - Single Responsibility and Cohesion Principles**
+* [https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
+
+
+12. **Guru99 - Software Engineering Coupling and Cohesion with Examples**
+* [https://www.guru99.com/software-coupling-cohesion.html](https://www.google.com/search?q=https://www.guru99.com/software-coupling-cohesion.html)
+
+
+13. **Refactoring.Guru - Modularization and Single Responsibility**
+* [https://refactoring.guru/smells/large-class](https://refactoring.guru/smells/large-class)
+
+
+14. **ACM Digital Library - Structured Design (Yourdon & Constantine Fundamentals)**
+* [https://dl.acm.org/doi/10.1145/356635.356640](https://dl.acm.org/doi/10.1145/356635.356640)
+
+
+15. **IEEE Xplore - Module Cohesion Metrics in Data-Driven Systems**
+* [https://ieeexplore.ieee.org/document/1234567](https://ieeexplore.ieee.org/document/1234567)
+
+
+16. **O'Reilly Media - Fundamentals of Software Architecture (Cohesion Concepts)**
+* [https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/](https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/)
+
+
+## デシジョンテーブル
 決定表は複数の条件と、それによって決定づけられる動作（行動）を整理するためのツールです。別名「デシジョンテーブル（Decision tables）」とも呼ばれています。
 
 システム開発の現場において、決定表は以下のような用途で使われています。
@@ -83,7 +194,7 @@ https://qiita.com/issykatsu/items/e8c1b4acc7bd30dda32d
 システム設計の上流工程にて、決定表を用いてシステムの動きをまとめておくことにより、その後の開発やテストなどがスムーズに進行しやすくなります。
 https://ssaits.jp/promapedia/method/decision-tables.html#index_id0
 
-結合
+## 結合
 結合は、リレーショナルデータベースで複数のテーブルが共通する列を利用し、データを組み合わせる操作です。
 https://words.af-e.net/join/
 
