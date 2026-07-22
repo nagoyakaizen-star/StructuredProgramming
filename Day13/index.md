@@ -348,11 +348,15 @@ https://asana.com/ja/resources/top-down-approach
 トランザクション分析は、特定のシステムまたはプロセス内のトランザクションから生成された データを評価および解釈するために使用される体系的なアプローチです。この方法論は、組織が顧客の行動を理解し、業務を最適化し、意思決定プロセスを強化するのに役立つため、財務、マーケティング、データ サイエンスなどのさまざまな分野で重要です。トランザクションを分析することで、アナリストはパターン、傾向、異常を発見し、ビジネス パフォーマンスに関する貴重な洞察を得ることができます。
 https://ja.statisticseasily.com/%E7%94%A8%E8%AA%9E%E9%9B%86/%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E5%88%86%E6%9E%90%E3%81%AE%E9%87%8D%E8%A6%81%E6%80%A7%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B/
 
-内容結合
+## 内容結合
 自身の所有するデータが、他のモジュールかた直接操作される状態の結合です。
 https://qiita.com/uesho/items/59c99ccd712a591883d2
+### 3.816 content coupling
+1. type of coupling in which some or all of the contents of one software module are included in the contents of
+another module
+cf. common-environment coupling, control coupling, data coupling, hybrid coupling, pathological coupling
 
-ハイブリッド結合
+## ハイブリッド結合
 値の範囲により意味が異なったり、状況により意味が異なるデータがある結合です
 ハイブリッドデータとは「値によって意味が異なるもの」や「ビットごとに意味が異なる」データのことです。
 https://qiita.com/uesho/items/59c99ccd712a591883d2
