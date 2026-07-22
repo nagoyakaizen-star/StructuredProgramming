@@ -198,9 +198,118 @@ https://ssaits.jp/promapedia/method/decision-tables.html#index_id0
 結合は、リレーショナルデータベースで複数のテーブルが共通する列を利用し、データを組み合わせる操作です。
 https://words.af-e.net/join/
 
-データストア
+## データストア
 データストアは、コンピュータシステムに情報を格納して保護するデジタルリポジトリです。データストアは、ネットワーク接続ストレージ、分散型クラウドストレージ、物理ハードドライブ、または仮想ストレージである場合があります。情報テーブルなどの構造化データと、E メール、画像、動画などの非構造化データの両方を保存できます。組織はデータストアを使用して、ビジネスユニット間で情報を保持、共有、および管理します。
 https://aws.amazon.com/jp/what-is/data-store/
+
+### Q1 data store, data setという用語は技術用語というより、一般用語のように感じます。特定の領域で特定の用例はありますか。規格はじめ参考文献をＷｉｋｉｐｅｄｉａ以外で１５個ＵＲＬ付きでおしえてください。
+A1 by gemini
+確かに「データストア（Data Store）」や「データセット（Data Set）」は、日常用語の「データを蓄積する場所」「データの集まり」として定着しているため一般用語のように感じられます。
+
+しかし、情報技術、国際規格（ISO/IEC）、データベース理論、機械学習・AI、統計・オープンデータなどの**特定領域においては、厳密な要件・条件を備えた専門術語**として定義されています。
+
+それぞれの特定領域における用例と定義を解説した上で、公的機関・規格団体・主要ベンダー等の参考文献（Wikipedia以外）を15件提示します。
+
+---
+
+## 1. 特定領域における「Data Store」「Data Set」の具体的な用例
+
+### ① 構造化システム分析・設計手法（SSADM / 構造化分析）
+
+* **Data Store（データストア）**: システム設計図（データフロー図: DFD）における**記号要素の1つ**です。「単にファイルがある」という意味ではなく、「時間が経っても消失せず、複数のプロセスから読み書き可能な永続化されたデータ集積体（二重線や開放長方形の記号で表現される）」という特定の役割を示します。
+
+### ② 国際規格・標準化（ISO/IEC, W3C, DCAT）
+
+* **Data Set（データセット）**: ISO/IEC 11179（データメタデータ管理）や W3C DCAT（Data Catalog Vocabulary）等の規格において、「単一の提供者によって管理・公開され、特定のアクセス方法やメタデータ（形式、スキーマ、ライセンス）を持つ一塊のデータリソース」として厳密に定義されています。
+
+### ③ 機械学習・AI領域（MLOps）
+
+* **Data Set（データセット）**: モデルの学習・評価に使用する「Training set（訓練データ）」「Validation set（検証データ）」「Test set（テストデータ）」など、**統計的性質や分布を統一して分割・管理される特定の行・列構造を持つデータ群**を指します。
+
+### ④ クラウドアーキテクチャ・分散DB（AWS, GCP, Azure, Google Cloud）
+
+* **Data Store（データストア）**: RDB（関係データベース）だけでなく、NoSQL、キー・バリューストア、ドキュメント型、オブジェクトストレージなどを**抽象化して総称するインフラストラクチャ用語**（例: GCPの Cloud Datastore, Azure Datastore）です。
+* **Data Set（データセット）**: Google BigQuery などでは、「テーブルやビューを論理的にグループ化し、アクセス権限を制御するための最上位の構成単位（命名空間）」という具象的なシステム用語として使われます。
+
+---
+
+## 2. 参考文献・規格ドキュメント（15選）
+
+国際規格団体（ISO, W3C）、政府・公的機関（IPA, 総務省, NIST）、主要IT企業（Microsoft, Google, AWS, Oracle）等の公式ドキュメントURLです。
+
+1. **ISO/IEC 11179-1:2023 (Information technology — Metadata registries - Framework)**
+* メタデータ標準における Data Set や Data Element の国際規格定義。
+* [https://www.iso.org/standard/79203.html](https://www.google.com/search?q=https://www.iso.org/standard/79203.html)
+
+
+2. **W3C - Data Catalog Vocabulary (DCAT) - Version 3**
+* Web上での Dataset（データセット）の記述・公開に関する標準勧告仕様。
+* [https://www.w3.org/TR/vocab-dcat-3/](https://www.w3.org/TR/vocab-dcat-3/)
+
+
+3. **NIST (米国標準技術研究所) - SP 800-152: Glossary (Data Store / Data Set)**
+* セキュリティ規格におけるデータストアおよびデータセットの公式用語集・定義。
+* [https://csrc.nist.gov/glossary/term/data_store](https://www.google.com/search?q=https://csrc.nist.gov/glossary/term/data_store)
+
+
+4. **IPA（独立行政法人 情報処理推進機構）- 共通フレーム2013 / システム開発用語**
+* データフロー図（DFD）におけるデータストア等、開発工程における標準定義。
+* [https://www.ipa.go.jp/archive/files/000005582.pdf](https://www.ipa.go.jp/archive/files/000005582.pdf)
+
+
+5. **総務省 - オープンデータ作成ガイドブック（データセットの定義と構造）**
+* 行政情報システムやオープンデータ領域における「データセット」単位の定義。
+* [https://www.soumu.go.jp/main_content/000693524.pdf](https://www.soumu.go.jp/main_content/000693524.pdf)
+
+
+6. **デジタル庁 - データ戦略推進カタログサイト（データセットのメタデータ標準）**
+* 日本のデジタル庁によるデータセット（Dataset）カタログの標準仕様ドキュメント。
+* [https://www.digital.go.jp/policies/data_strategy](https://www.digital.go.jp/policies/data_strategy)
+
+
+7. **Microsoft Learn - Azure Data Store / Architecture Center**
+* クラウド設計パターンにおける「Data Store（データストア）」の分類と選択ガイド。
+* [https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/data-store-decision-tree](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/data-store-decision-tree)
+
+
+8. **Google Cloud - BigQuery におけるデータセット（Datasets）のデータモデル**
+* DWHサービス内でのリソース階層単位としての「データセット」の具象的定義。
+* [https://cloud.google.com/bigquery/docs/datasets-intro](https://cloud.google.com/bigquery/docs/datasets-intro)
+
+
+9. **AWS (Amazon Web Services) - AWS Glue Data Catalog & Datasets**
+* データ分析基盤におけるデータストア（Data Store）とデータセット（Data Set）の識別定義。
+* [https://docs.aws.amazon.com/glue/latest/dg/components-key-concepts.html](https://docs.aws.amazon.com/glue/latest/dg/components-key-concepts.html)
+
+
+10. **Oracle - Database Concepts (Data Stores in Information Systems)**
+* データベース管理システム（DBMS）アーキテクチャにおける Data Store の位置付け。
+* [https://docs.oracle.com/en/database/oracle/oracle-database/21/cncpt/introduction-to-oracle-database.html](https://docs.oracle.com/en/database/oracle/oracle-database/21/cncpt/introduction-to-oracle-database.html)
+
+
+11. **US Government Data.gov - Dataset Definition & Metadata Standards**
+* 米国政府ポータルにおける公共データセット（Dataset）の規格・登録メタデータ標準。
+* [https://data.gov/dcat-us/](https://www.google.com/search?q=https://data.gov/dcat-us/)
+
+
+12. **European Data Portal - Open Data Goldbook (Dataset Concepts)**
+* 欧州連合（EU）のデータポータルにおけるデータセットの定義と管理基準。
+* [https://data.europa.eu/en/training/what-open-data](https://www.google.com/search?q=https://data.europa.eu/en/training/what-open-data)
+
+
+13. **MLflow Documentation - MLflow Dataset Tracking (Machine Learning)**
+* AI/機械学習パイプラインにおける訓練データセット（Dataset）のバージョン管理定義。
+* [https://mlflow.org/docs/latest/tracking/data-api.html](https://mlflow.org/docs/latest/tracking/data-api.html)
+
+
+14. **TensorFlow - tf.data.Dataset API Reference**
+* 機械学習フレームワークにおける、データ読み込み・変換を行うための型・クラス定義。
+* [https://www.tensorflow.org/api_docs/python/tf/data/Dataset](https://www.tensorflow.org/api_docs/python/tf/data/Dataset)
+
+
+15. **SEI (Software Engineering Institute - Carnegie Mellon University) - Glossary**
+* ソフトウェア工学（CMMI等）におけるデータストアおよびデータセットの概念定義。
+* [https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=9131](https://www.google.com/search?q=https://resources.sei.cmu.edu/library/asset-view.cfm%3Fassetid%3D9131)
 
 データディクショナリ
 情報システムが取り扱う全てのデータ項目を分かりやすい形で定義し、詳細に記述し、一元的に管理します。
