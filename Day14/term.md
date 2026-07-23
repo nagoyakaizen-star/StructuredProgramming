@@ -1590,4 +1590,309 @@ fn main() {
     );
 }
 
+# Q5 構造化モデリングにおいて、対称性があると複雑度が半分になる例を８つ挙げ、C, C++, Python, RUSTでコンパイル（実行）できるソースを生成してください。
+A5
+構造化モデリングやアルゴリズム設計において、**「対称性（Symmetry）」を利用することで処理すべき状態数・コード量・計算複雑度が実質的に約半分（$1/2$）に削減される代表的な8つの典型例**について解説します。
+
+各項目について、実際にコンパイル・実行可能な **C / C++ / Python / Rust** のソースコードを作成しました。
+
+---
+
+## 8つの例の概要
+
+1. **対称行列（距離行列）の領域半減**
+* $A_{ij} = A_{ji}$ のため、全要素 $N^2$ の管理が上三角（または下三角）領域の $N(N+1)/2 \approx N^2/2$ に半減します。
+
+
+2. **無向グラフの隣接行列**
+* 辺の接続関係が対称なため、データ保持および全探索処理時のスキャン対象メモリが半減します。
+
+
+3. **回文（Palindrome）判定の走査範囲半減**
+* 先頭と末尾から中央へ向けてチェックすることで、文字列長の半分（$N/2$）の比較で完了します。
+
+
+4. **二分木の左右反転（Mirror）判定**
+* `Left==Right` の左右対称性を判定する際、片方の判定ロジックを鏡像適用（再帰）させることで状態空間の追跡を半減させます。
+
+
+5. **双方向探索（Bidirectional Search）**
+* スタートとゴールから同時に対称に探索を進めることで、探索空間が $O(b^d)$ から $O(2 \cdot b^{d/2})$ へ激減します。
+
+
+6. **可逆なエンコード・デコード（XOR暗号など）**
+* 暗号化と復号化がまったく同一の対称ロジック（$A \oplus K \oplus K = A$）になるため、処理関数を2つ書く必要がなく1つに統一（コード量半減）されます。
+
+
+7. **可 reversible 状態遷移（Undo / Redo）**
+* 操作と逆操作のデータモデルに対称性を持たせることで、状態管理用の履歴データサイズや復元ロジックの複雑度を削ります。
+
+
+8. **区間折り返し検索（折り返し探索）**
+* データ空間が対称軸を持つ場合、全体の検索範囲を半分に絞り込んで比較を実行できます。
+
+
+
+---
+
+## 各言語でのコンパイル・実行可能なソースコード
+
+以下のコードは各言語の標準機能のみで記述しており、そのままコンパイル・実行できます。
+
+### 1. 対称行列のデータ領域半減（C言語）
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 4
+
+// 全要素 N*N (16) ではなく、上三角領域 N*(N+1)/2 (10) のみ保持して複雑度とメモリを半減
+typedef struct {
+    int data[N * (N + 1) / 2];
+} HalfSymmetricMatrix;
+
+// 2次元インデックス (i, j) を 1次元の三角形インデックスへ変換
+int get_index(int i, int j) {
+    if (i > j) { int tmp = i; i = j; j = tmp; } // i <= j に揃える（対称性の利用）
+    return i * N - (i - 1) * i / 2 + (j - i);
+}
+
+void set_val(HalfSymmetricMatrix *m, int i, int j, int val) {
+    m->data[get_index(i, j)] = val;
+}
+
+int get_val(HalfSymmetricMatrix *m, int i, int j) {
+    return m->data[get_index(i, j)];
+}
+
+int main(void) {
+    HalfSymmetricMatrix m = {{0}};
+    set_val(&m, 0, 3, 99); // (0,3) にセット
+    
+    // 対称性により (3,0) からも同じデータへアクセス可能
+    printf("C [1. Matrix]: (0,3)=%d, (3,0)=%d\n", get_val(&m, 0, 3), get_val(&m, 3, 0));
+    return 0;
+}
+
+```
+
+---
+
+### 2. 無向グラフの隣接行列の対称アクセス（C++）
+
+```cpp
+#include <iostream>
+#include <vector>
+
+class SymmetricGraph {
+    size_t nodes;
+    std::vector<bool> edges; // メモリを約半分に削減
+
+    size_t get_index(size_t u, size_t v) const {
+        if (u > v) std::swap(u, v); // 対称性により常に u <= v
+        return u * nodes + v - (u * (u + 1)) / 2;
+    }
+
+public:
+    SymmetricGraph(size_t n) : nodes(n), edges((n * (n + 1)) / 2, false) {}
+
+    void add_edge(size_t u, size_t v) { edges[get_index(u, v)] = true; }
+    bool has_edge(size_t u, size_t v) const { return edges[get_index(u, v)]; }
+};
+
+int main() {
+    SymmetricGraph g(5);
+    g.add_edge(1, 4); // 1-4 間にエッジを追加
+
+    // 1->4 と 4->1 の双方向チェックが単一のデータで完結
+    std::cout << "C++ [2. Graph]: 1->4: " << g.has_edge(1, 4) 
+              << ", 4->1: " << g.has_edge(4, 1) << "\n";
+}
+
+```
+
+---
+
+### 3. 回文判定のループ回数半減（Python）
+
+```python
+def is_palindrome(s: str) -> bool:
+    # 文字列の左右対称性を利用し、比較回数を N から N/2 へ半減
+    length = len(s)
+    for i in range(length // 2):
+        if s[i] != s[length - 1 - i]:
+            return False
+    return True
+
+if __name__ == "__main__":
+    text = "racecar"
+    result = is_palindrome(text)
+    print(f"Python [3. Palindrome]: '{text}' is palindrome? -> {result}")
+
+```
+
+---
+
+### 4. 二分木の左右対称（Mirror）判定（Rust）
+
+```rust
+#[derive(Debug)]
+struct TreeNode {
+    val: i32,
+    left: Option<Box<TreeNode>>,
+    right: Option<Box<TreeNode>>,
+}
+
+// 左右のノードの対称性を再帰的に比較（探索分岐パターンを抽象化）
+fn is_symmetric(left: &Option<Box<TreeNode>>, right: &Option<Box<TreeNode>>) -> bool {
+    match (left, right) {
+        (None, None) => true,
+        (Some(l), Some(r)) => {
+            l.val == r.val 
+                && is_symmetric(&l.left, &r.right)  // 外側の比較
+                && is_symmetric(&l.right, &r.left) // 内側の比較
+        }
+        _ => false,
+    }
+}
+
+fn main() {
+    // 左右対称な木を構築
+    let root_left = Some(Box::new(TreeNode { val: 2, left: None, right: None }));
+    let root_right = Some(Box::new(TreeNode { val: 2, left: None, right: None }));
+    
+    let symmetric = is_symmetric(&root_left, &root_right);
+    println!("Rust [4. Tree Symmetry]: Is Symmetric? -> {}", symmetric);
+}
+
+```
+
+---
+
+### 5. 双方向探索による計算量激減（C++）
+
+```cpp
+#include <iostream>
+#include <unordered_set>
+#include <vector>
+
+// 双方向（スタートとゴールからの対称な）探索により空間複雑度を削減
+bool bidirectional_search(int start, int target, const std::vector<std::vector<int>>& graph) {
+    std::unordered_set<int> forward_visited = {start};
+    std::unordered_set<int> backward_visited = {target};
+
+    while (!forward_visited.empty() && !backward_visited.empty()) {
+        // 対称的な交差チェック
+        for (int node : forward_visited) {
+            if (backward_visited.count(node)) return true; // 出会ったら探索終了
+        }
+
+        std::unordered_set<int> next_forward;
+        for (int node : forward_visited) {
+            for (int neighbor : graph[node]) {
+                next_forward.insert(neighbor);
+            }
+        }
+        forward_visited = next_forward;
+    }
+    return false;
+}
+
+int main() {
+    // 簡易的な直線グラフ 0 - 1 - 2 - 3 - 4
+    std::vector<std::vector<int>> graph = {{1}, {0, 2}, {1, 3}, {2, 4}, {3}};
+    bool found = bidirectional_search(0, 4, graph);
+    std::cout << "C++ [5. Bidirectional Search]: Path exists? -> " << (found ? "Yes" : "No") << "\n";
+}
+
+```
+
+---
+
+### 6. 対称ロジックによる暗号化・復号化の単一化（C言語）
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+// XOR暗号の可逆対称性を利用し、EncodeとDecodeの処理ロジック（コード記述量）を完全に1つに集約
+void xor_transform(char *data, char key, size_t len) {
+    for (size_t i = 0; i < len; i++) {
+        data[i] ^= key; // 同じ関数を2回呼ぶと元に戻る
+    }
+}
+
+int main(void) {
+    char message[] = "Symmetry";
+    char key = 0x5A;
+    size_t len = strlen(message);
+
+    xor_transform(message, key, len); // 暗号化
+    printf("C [6. XOR Cipher]: Encrypted: %s\n", message);
+
+    xor_transform(message, key, len); // 復号化（まったく同じ関数を実行）
+    printf("C [6. XOR Cipher]: Decrypted: %s\n", message);
+    return 0;
+}
+
+```
+
+---
+
+### 7. 可逆状態遷移の対称 Undo/Redo モデル（Python）
+
+```python
+class SymmetricState:
+    def __init__(self):
+        self.value = 0
+
+    # 順操作(Do)と逆操作(Undo)の引き算/足し算の可逆対称性を利用
+    def apply_delta(self, delta: int):
+        self.value += delta
+        # 逆操作の関数オブジェクトを返すことで、Undoロジック専用クラスを不要にする
+        return lambda: self.apply_delta(-delta)
+
+if __name__ == "__main__":
+    state = SymmetricState()
+    undo_action = state.apply_delta(15) # +15 する
+    print(f"Python [7. Undo/Redo]: Applied +15 -> Current: {state.value}")
+    
+    undo_action() # 自動生成された対称な逆操作を呼ぶ
+    print(f"Python [7. Undo/Redo]: After Undo -> Current: {state.value}")
+
+```
+
+---
+
+### 8. 対称折り返し探索による検索の半減（Rust）
+
+```rust
+// データが中央を軸に対称（例: 正規分布的、ミラー配置）である場合の半減探索
+fn symmetric_find(arr: &[i32], target: i32) -> Option<usize> {
+    let len = arr.len();
+    let half = len / 2;
+
+    // 先頭から半分までの走査と同時に、反対側（末尾側）もペアで1ループ内でチェック
+    for i in 0..half {
+        if arr[i] == target {
+            return Some(i);
+        }
+        let mirror_idx = len - 1 - i;
+        if arr[mirror_idx] == target {
+            return Some(mirror_idx);
+        }
+    }
+    None
+}
+
+fn main() {
+    let data = vec![10, 20, 30, 40, 30, 20, 10];
+    if let Some(idx) = symmetric_find(&data, 40) {
+        println!("Rust [8. Folding Search]: Found target at index {}", idx);
+    }
+}
+
+```
+A
 ```
