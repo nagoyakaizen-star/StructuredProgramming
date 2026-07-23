@@ -111,6 +111,142 @@ https://www.edifist.co.jp/lecture/dbdesign/02_03/01/
 
 マクロ：
 
+# Q0 マクロの概念を、アセンブラ、C、Verilog-HDLはじめ１６言語における意味をしめしてください。プログラミング言語以外で、ソフトウェア開発で利用する可能性のあるマクロという用語を８つURLつきで示してください。
+A0 by Gemini
+## 1. 16の言語における「マクロ」の概念と意味
+
+マクロ（Macro）の基本概念は「一連の手順や文脈を定義し、呼び出し時に事前処理（展開）して別のコードや文字列に置き換える機構」ですが、各プログラミング言語・ハードウェア記述言語においてその役割や強力さは大きく異なります。
+
+---
+
+### 1. アセンブラ（Assembly）
+
+* **意味:** 頻出する命令群を一つの命令名（マクロ命令）として定義し、ソースコード上で呼び出すと、アセンブル前にその場所へ命令列をインライン展開（テキスト置換）する機能。
+* **特徴:** サブルーチン呼び出し（`CALL`/`RET`）に伴うレジスタ退避やスタック操作のオーバーヘッドを無くし、コードの記述量を減らす目的で多用されます。
+
+### 2. C
+
+* **意味:** プリプロセッサ（`#define`）による単純な文字列置換機構。
+* **特徴:** 定数の定義やインライン関数の代用として使われます。衛生性（Hygienic）がないため、カッコをつけ忘れると演算子の優先順位が崩れるなど、副作用を生みやすい特徴があります。
+
+### 3. C++
+
+* **意味:** 基本的にCと同等のプリプロセッサマクロ（`#define`）を継承しつつ、テンプレート機能や `constexpr` への移行が進む領域。
+* **特徴:** C言語互換のために残されていますが、型安全性や名前空間の観点から、モダンC++ではテンプレートや `constexpr` などの言語機能へ代替することが推奨されます。
+
+### 4. Verilog-HDL
+
+* **意味:** プリプロセッサ命令（` `define` ）によるコンパイル定数設定およびテキスト置換。
+* **特徴:** 回路のビット幅（` `define BUS_WIDTH 32`）やコンパイル条件分岐（` `ifdef`）の制御に使用され、ハードウェア構造の切り替えに利用されます。
+
+### 5. SystemVerilog
+
+* **意味:** Verilogの ` `define` を拡張し、パラメータ付きマクロや多行マクロの可読性を向上させたもの。
+* **特徴:** 検証環境（UVM）などでテストベンチを簡潔に記述するためのコード生成マクロ（` `uvm_component_utils` など）として高度に活用されます。
+
+### 6. Lisp (Common Lisp)
+
+* **意味:** プログラミング言語における**S式（構文木）を直接操作・変換する強力なマクロシステム**。
+* **特徴:** テキスト置換ではなく、コンパイル時にLispコード自体を評価して別のコード（AST）を生成します。「コードはデータである（Homoiconicity）」という特徴を活かし、新しい構文やDSL（ドメイン固有言語）を言語内に追加できます。
+
+### 7. Rust
+
+* **意味:** 宣言的マクロ（`macro_rules!`）と手続き的マクロ（Procedural Macros / `#[derive(...)]` 等）の2種類を持つ強力な構文拡張機構。
+* **特徴:** テキスト置換ではなく、コンパイル時にトークンストリームを解析・変換します。衛生性（Hygiene）が保たれており、変数名の衝突（シャドーイング）が起きないよう設計されています。
+
+### 8. Scheme
+
+* **意味:** 衛生的マクロ（Hygienic Macro / `syntax-rules`）を中心としたマクロシステム。
+* **特徴:** Lispから派生した言語ですが、マクロ内部で定義したローカル変数がマクロ展開先の変数名を誤って上書きしないよう、自動的に名前空間が保護（衛生化）される仕組みが言語仕様に組み込まれています。
+
+### 9. Elixir
+
+* **意味:** AST（抽象構文木）を操作してコード生成を行うメタプログラミング機構（`defmacro`）。
+* **特徴:** Ruby風の構文を持ちながら内部的にはErlang ASTを直接生成・操作でき、DSLの作成や標準ライブラリ（`if` や `unless` 自体もマクロで記述）の大部分を構築しています。
+
+### 10. Julia
+
+* **意味:** アットマーク記号（`@macro_name`）で呼び出すメタプログラミング機能。
+* **特徴:** コンパイル時に引数として渡された式（`Expr` オブジェクト）を受け取り、それを書き換えた式を返します。ベンチマーク計測（`@btime`）やベクトル化処理（`@.`) などを直感的に記述できます。
+
+### 11. Nim
+
+* **意味:** コンパイル時にASTを構築・変換してコードを自動生成するマクロ（`macro`）機能。
+* **特徴:** 非常に強力なメタプログラミングを備えており、コンパイル時間計算（CTFE）と組み合わせて、ゼロコスト抽象化や独自の文法構造を作り出すことができます。
+
+### 12. Scala
+
+* **意味:** コンパイラプラグインとしてコンパイル時にコード（AST）の分析や書き換えを行う「Scala Macros」。
+* **特徴:** JSONの自動シリアライザ生成や、SQLクエリのコンパイル時型チェックなど、高い型安全性を維持したまま高度なメタプログラミングを実現します。
+
+### 13. Clojure
+
+* **意味:** Lispの伝統を継承したS式ベースのマクロシステム（`defmacro`）。
+* **特徴:** コード展開時に評価タイミングを制御（`quote` や `syntax-quote`）し、並列処理や状態管理（`atom` 操作）のための新しい抽象構文パターンを簡潔に定義できます。
+
+### 14. D言語
+
+* **意味:** テンプレートと `mixin`（文字列をコードとしてコンパイル時に挿入する機能）を組み合わせたマクロ的コード生成機能。
+* **特徴:** Cのプリプロセッサマクロの問題点を克服し、型安全かつスコープを壊さない形で強力なコンパイル時コード生成（CTFE）を実現します。
+
+### 15. Vim script / Vim9script
+
+* **意味:** エディタのキー操作手順を記録・再実行する「キーボードマクロ」と、関数や構文を展開・制御するスクリプトマクロ。
+* **特徴:** 開発時のルーチン的なテキスト編集作業の自動化から、エディタ全体の挙動を制御するメタ拡張までを担います。
+
+### 16. LaTeX (TeX)
+
+* **意味:** 文書作成・組版システムにおける「制御綴り（`\newcommand` や `\def`）」による置き換え・展開機能。
+* **特徴:** 定型的な文書構造のショートカット作成から、複製作成・条件分岐までを行う極めて強力な（チューリング完全な）マクロ展開エンジンです。
+
+---
+
+## 2. ソフトウェア開発で利用する「マクロ」用語（8選）
+
+プログラミング言語の構文拡張以外にも、ソフトウェア開発や運用・設計の現場において様々な「マクロ」用語が存在します。
+
+---
+
+### 1. Excel VBA Macro（VBAマクロ）
+
+* **意味:** 開発環境や各種データ（CSV/Excel）の集計・加工、リリース作業のチェック表作成などを自動化するために広く使われるOfficeスクリプト。
+* **URL:** [https://learn.microsoft.com/en-us/office/vba/api/overview/](https://learn.microsoft.com/en-us/office/vba/api/overview/)
+
+### 2. CMake Macro
+
+* **意味:** ビルドシステム「CMake」において、一連のビルド手順や依存関係の設定コマンドをまとめて再利用できるようにする機能（`macro()`）。`function` と異なりローカルスコープを作らず親スコープに変数を展開します。
+* **URL:** [https://cmake.org/cmake/help/latest/command/macro.html](https://cmake.org/cmake/help/latest/command/macro.html)
+
+### 3. Keybind / Keyboard Macro（キーボードマクロ）
+
+* **意味:** VS Code, Emacs, Vim などのIDE/エディタにおいて、一連のキー入力手順を一時的に記憶させ、大量のソースコードに対して繰り返し同じ修正を適用する自動化機能。
+* **URL:** [https://www.gnu.org/software/emacs/manual/html_node/emacs/Keyboard-Macros.html](https://www.google.com/search?q=https://www.gnu.org/software/emacs/manual/html_node/emacs/Keyboard-Macros.html)
+
+### 4. RPM Spec Macro
+
+* **意味:** Linux（RedHat系）のパッケージ作成（`rpmbuild`）において、インストール先ディレクトリ名やビルド手順の定型処理（`%configure`, `%make_build` など）を統一的に記述するためのマクロ変数・関数。
+* **URL:** [https://rpm-software-management.github.io/rpm/manual/macros.html](https://rpm-software-management.github.io/rpm/manual/macros.html)
+
+### 5. FreeCAD / CAD Macro
+
+* **意味:** 3D CADツールにおいて、複雑な立体形状の生成ロジックや繰り返し設計手順をPython等のスクリプトで自動記述・再実行するマクロ。
+* **URL:** [https://wiki.freecad.org/Macros](https://wiki.freecad.org/Macros)
+
+### 6. Autoconf / M4 Macro
+
+* **意味:** C/C++などのクロスプラットフォームビルドツールで、ターゲット環境のライブラリ依存関係やコンパイラ仕様を自動検出（`configure` スクリプトの生成）するために使われる M4 マクロ言語。
+* **URL:** [https://www.gnu.org/software/autoconf/manual/autoconf.html](https://www.google.com/search?q=https://www.gnu.org/software/autoconf/manual/autoconf.html)
+
+### 7. Google Workspace Macro (Apps Script)
+
+* **意味:** クラウド開発・運用管理において、Googleスプレッドシートやドキュメント操作を自動化・外部APIと連携させるためのスクリプトマクロ環境。
+* **URL:** [https://developers.google.com/apps-script](https://developers.google.com/apps-script)
+
+### 8. Rust Cargo / Proc-Macro Crate
+
+* **意味:** Rustのビルド・パッケージツール「Cargo」エコシステムにおいて、依存ライブラリからカスタム属性（`#[derive(Serialize)]` など）を提供・拡張するための独立したマクロ専用クレート（Web開発のORマッパーやAPIスキーマ自動生成などで多用）。
+* **URL:** [https://doc.rust-lang.org/reference/procedural-macros.html](https://doc.rust-lang.org/reference/procedural-macros.html)
+
 
 # Q1 Plane moduleという用語が構造化プログラミングの教科書に出てきました。どういう意味で、誰が、いつ、どういう論文を出していますか。最低で８つ、URLをお示しください。
 A1
