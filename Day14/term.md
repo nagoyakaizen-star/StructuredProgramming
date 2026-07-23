@@ -1838,6 +1838,12 @@ int main(void) {
 
 ```
 
+```bash
+C [6. XOR Cipher]: Encrypted:   #77?.(#
+C [6. XOR Cipher]: Decrypted: Symmetry
+
+
+...Program finished with exit code 0
 ---
 
 ### 7. 可逆状態遷移の対称 Undo/Redo モデル（Python）
