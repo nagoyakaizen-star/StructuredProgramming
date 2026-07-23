@@ -3112,3 +3112,41 @@ fn main() {
 
 ```
 
+## C Result
+========================================================
+               C COUPLING PUZZLE DEMO                  
+========================================================
+
+[1. Data Coupling]
+   Tax calculated: 100.00
+   SAFE/VALID: Inputs are pure values, zero side-effects.
+
+[2. Stamp Coupling]
+   Passes 1088 bytes struct when only 8 bytes (double balance) is used!
+   Balance: 2500.50
+
+[3. Bundling Coupling]
+   Module depends on entire LoggerC struct/vtable.
+   [INFO] Data processing started.
+
+[4. Control Coupling]
+   Caller passes flag 'is_admin=1' to force internal logic branch.
+   -> Branch executed: Admin privileges granted for user 42
+
+[5. Hybrid Coupling]
+   Data payload contains embedded control code (cmd=1).
+   -> Interpreted Action: CREATE for Bob (ID: 42)
+
+[6. Common/Global Coupling]
+   [Module A] Silently modified global g_system_state -> 1
+   [Module B] Reads global g_system_state: 1
+   -> DANGER: Behavior changed due to invisible side-effect from another module!
+   DANGER: Global state leads to race conditions and untraceable bugs.
+
+[7. Content Coupling (Memory Hack)]
+   Before attack: public_val=10, internal_secret=42
+   After attack : public_val=10, internal_secret=9999
+   CRITICAL DANGER: Memory offset calculation (data + 1) directly mutated internal struct member!
+   If struct layout changes (e.g. alignment or new field), this corrupts random memory!
+
+=======
