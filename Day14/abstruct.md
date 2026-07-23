@@ -297,6 +297,21 @@ void run_async(void) {
 
     printf("【同期】メインの処理は待たずに進みます\n");
 }
+
+```error
+/nix/store/7h3qnwgvkw6z2r8lq4j5mks4l6r5x2cq-binutils-2.44/bin/ld: /nix/store/qhw0sp183mqd04x5jp75981kwya64npv-glibc-2.40-66/lib/Scrt1.o: in function `_start':
+(.text+0x1b): undefined reference to `main'
+```
+
+void main(void){
+    run_async();
+}
+を下につけたら動いた。
+
+【同期】メインの処理は待たずに進みます
+
+
+
 6. デシジョンテーブル（決定表）をコード化する
 複数の「条件（Condition）」の組み合わせによって「動作（Action）」を制御するロジックです。
 
