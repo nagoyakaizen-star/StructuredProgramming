@@ -1325,6 +1325,13 @@ int main(void) {
 
 ```
 
+```bash
+C: Symmetric
+
+
+...Program finished with exit code 0
+```
+
 ### C++
 
 ```cpp
