@@ -1,5 +1,11 @@
 https://www.amazon.co.jp/dp/4296071289/
 
+https://www.amazon.co.jp/dp/4839909865/
+
+https://qiita.com/kaizen_nagoya/items/b6530dc4ab6ddf0815d6
+
+https://gist.github.com/thata/ed0575c2871070ecc89d99bd7e357f5d
+
 # Q1 創って学ぶCPUの基本　3bitプロセッサを設計しながらゼロから仕組みを理解する　という本のVerlogHDLのソースコードはありますか。
 A1 by Gemini
 結論からお伝えすると、**『創って学ぶCPUの基本 3bitプロセッサを設計しながらゼロから仕組みを理解する』（檀上京之介 著 / 日経BP）には、Verilog HDLのソースコードは提供・掲載されていません**。
