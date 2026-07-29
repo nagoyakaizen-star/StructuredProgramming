@@ -1,4 +1,4 @@
-https://www.amazon.co.jp/%E5%89%B5%E3%81%A3%E3%81%A6%E5%AD%A6%E3%81%B6CPU%E3%81%AE%E5%9F%BA%E6%9C%AC-3bit%E3%83%97%E3%83%AD%E3%82%BB%E3%83%83%E3%82%B5%E3%82%92%E8%A8%AD%E8%A8%88%E3%81%97%E3%81%AA%E3%81%8C%E3%82%89%E3%82%BC%E3%83%AD%E3%81%8B%E3%82%89%E4%BB%95%E7%B5%84%E3%81%BF%E3%82%92%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B-%E6%AA%80%E4%B8%8A%E4%BA%AC%E4%B9%8B%E4%BB%8B/dp/4296071289/ref=sr_1_1?adgrpid=1316118182832403&dib=eyJ2IjoiMSJ9._yi5XDVj0mR4d10Vk_9zvI_fiZlxmA3rsmXEpXnvNjTGjHj071QN20LucGBJIEps.-1NTL1yXwT_FXCPnTj-eXsf20ZYLFi3c-YGwDWz3EYM&dib_tag=se&hvadid=82257635367235&hvbmt=be&hvdev=c&hvlocphy=140064&hvnetw=o&hvqmt=e&hvtargid=kwd-82258939525106%3Aloc-96&hydadcr=20960_13634701&jp-ad-ap=0&keywords=%E5%89%B5%E3%81%A3%E3%81%A6%E5%AD%A6%E3%81%B6cpu%E3%81%AE%E5%9F%BA%E6%9C%AC&mcid=51547d60b6b13f62924c5e53fc8cc2c7&msclkid=6a1a86f0bb89152ac13dec99f9d6c9b5&qid=1785283178&sr=8-1
+https://www.amazon.co.jp/dp/4296071289/
 
 # Q1 創って学ぶCPUの基本　3bitプロセッサを設計しながらゼロから仕組みを理解する　という本のVerlogHDLのソースコードはありますか。
 A1 by Gemini
@@ -21,7 +21,22 @@ Verilog HDLを用いて、ごくシンプルな4bit CPUをゼロから記述・�
 
 # Q2 状態遷移図はありますか。
 A2 
+『創って学ぶCPUの基本 3bitプロセッサを設計しながらゼロから仕組みを理解する』で作成するCPU（TTM3）には、**クロックサイクルごとの制御（状態遷移）を解説するための状態遷移図（ステートマシン図）が存在します**。
 
+### 本書における状態遷移の仕組み
+
+本書で設計する3bit CPU（TTM3）は、1つの命令を実行するのに2つのクロック（**CPI＝2**）を消費する設計になっています。そのため、CPU全体の動作は以下のようなシンプルな2つの状態を繰り返す遷移となります。
+
+1. **フェッチ（Fetch / 命令読み出し）**
+* プログラムカウンタ（PC）が指すアドレスから命令（機械語）を読み出し、命令レジスタに保持する状態。
+
+
+2. **エグゼキューション（Execute / 命令実行）**
+* 読み込んだ命令（ADD、XOR、JMPなど）をデコードし、ALUで計算したりレジスタを更新したりする状態。
+
+
+
+書籍の第3章（CPU基本設計）〜第4章（CPU論理回路 詳細設計）のなかで、クロック回路やフリップフロップを使った「状態（ステート）をどう切り替えるか」を示す状態遷移図やタイムチャート（タイミングチャート）が掲載され、回路図に落とし込む流れが解説されています。
 
 
 
