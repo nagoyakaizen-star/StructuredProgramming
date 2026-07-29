@@ -478,3 +478,19 @@ testbench.sv:80: syntax error
 testbench.sv:80: error: Malformed statement
 Exit code expected: 0, received: 2
 ```
+## comment compile error line
+//            alarm           <= 1 me;
+
+```
+testbench.sv:10: warning: timescale for smart_lock_cpu4bit inherited from another file.
+design.sv:1: ...: The inherited timescale is here.
+VCD info: dumpfile dump.vcd opened for output.
+[Time 35000] ???: ????? '3'
+[Time 125000] ???: ????? '5'
+[Time 215000] ???: ????? '1' (3?? -> ??????????)
+[Time 375000] ???: ????? '9' (????)
+[Time 505000] ??????????
+design.sv:63: $finish called at 505000 (1ps)
+Finding VCD file...
+./dump.vcd
+```
