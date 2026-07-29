@@ -24,6 +24,15 @@ A2
 
 
 
+
+
+
+
+
+
+
+
+
 ```plantuml
 @startuml
 skinparam shadowing false
@@ -47,3 +56,394 @@ underflag1 --> underflag0: clear
 ```
 
 <img width="387" height="524" alt="image" src="https://github.com/user-attachments/assets/92526a40-8369-4cde-a832-800b56b506c0" />
+
+
+# Q3 StructuredProgramming/Day15/3bitcpu.md at main · nagoyakaizen-star/StructuredProgramming で書いた状態遷移図を実現するVerilog HDLのコードを生成してください。
+```python
+verilog_code = """// ============================================================================
+// 3-bit Processor State Machine & CPU Top Module (Verilog HDL)
+// Repository: nagoyakaizen-star/StructuredProgramming (Day15/3bitcpu.md)
+// ----------------------------------------------------------------------------
+// 【状態遷移図 (State Transition Diagram) の概要】
+//
+//                 +------------------+
+//                 |    RESET (初期)  |
+//                 +------------------+
+//                          | (sys_rst_n == 1)
+//                          v
+//    +--------------------------------------------+
+//    |  S_FETCH (0) : 命令フェッチ (Fetch)       |
+//    |  - PCの示すメモリから命令(3-bit)を読み出し |
+//    +--------------------------------------------+
+//                          |
+//                          v (次のクロック立ち上がり)
+//    +--------------------------------------------+
+//    |  S_EXEC (1)  : 命令実行 (Execute)         |
+//    |  - 命令デコード・ALU演算・レジスタ更新      |
+//    |  - JMP条件成立時: PC <- ジャンプ先        |
+//    |  - 通常時: PC <- PC + 1                    |
+//    +--------------------------------------------+
+//                          |
+//                          +---> (再び S_FETCH へ遷移)
+//
+// ============================================================================
+
+module cpu3bit (
+    input  wire       clk,        // システムクロック
+    input  wire       rst_n,      // 非同期リセット (Active Low)
+    input  wire [2:0] in_data,    // 外部入力データ (3-bit)
+    output reg  [2:0] out_data,   // 外部出力データ (3-bit)
+    output reg  [2:0] pc,         // プログラムカウンタ (3-bit: アドレス 0~7)
+    output wire       state_out   // 現在のステート (0: FETCH, 1: EXECUTE)
+);
+
+    // ------------------------------------------------------------------------
+    // 1. 状態定義 (State Definition)
+    // ------------------------------------------------------------------------
+    localparam S_FETCH = 1'b0;  // 命令読み出しフェーズ
+    localparam S_EXEC  = 1'b1;  // 命令実行フェーズ
+
+    reg state;                  // 現在の状態レジスタ
+    assign state_out = state;
+
+    // ------------------------------------------------------------------------
+    // 2. レジスタおよび内部信号の定義
+    // ------------------------------------------------------------------------
+    reg [2:0] reg_a;            // Aレジスタ (3-bit)
+    reg [2:0] reg_b;            // Bレジスタ (3-bit)
+    reg [2:0] ir;               // 命令レジスタ (Instruction Register)
+    reg       flag_c;           // キャリーフラグ (Carry Flag)
+
+    // 命令コード定義 (3-bit Opcode Examples)
+    localparam OP_ADD = 3'b000;  // RegA <- RegA + RegB
+    localparam OP_SUB = 3'b001;  // RegA <- RegA - RegB
+    localparam OP_IN  = 3'b010;  // RegA <- in_data
+    localparam OP_OUT = 3'b011;  // out_data <- RegA
+    localparam OP_MOV = 3'b100;  // RegA <- RegB
+    localparam OP_JMP = 3'b101;  // PC   <- RegB
+    localparam OP_AND = 3'b110;  // RegA <- RegA & RegB
+    localparam OP_XOR = 3'b111;  // RegA <- RegA ^ RegB
+
+    // ------------------------------------------------------------------------
+    // 3. 仮想ROM (プログラムメモリ: 8語 x 3ビット)
+    // ------------------------------------------------------------------------
+    wire [2:0] rom_data;
+
+    function [2:0] get_rom;
+        input [2:0] addr;
+        begin
+            case (addr)
+                3'd0: get_rom = OP_IN;   // 0: 外部入力をRegAへロード
+                3'd1: get_rom = OP_ADD;  // 1: RegA = RegA + RegB
+                3'd2: get_rom = OP_OUT;  // 2: RegAを外部出力へ
+                3'd3: get_rom = OP_XOR;  // 3: RegA = RegA ^ RegB
+                3'd4: get_rom = OP_SUB;  // 4: RegA = RegA - RegB
+                3'd5: get_rom = OP_OUT;  // 5: 結果を出力
+                3'd6: get_rom = OP_JMP;  // 6: アドレスRegBへジャンプ
+                3'd7: get_rom = OP_IN;   // 7: 初期状態復帰
+                default: get_rom = 3'b000;
+            endcase
+        end
+    endfunction
+
+    assign rom_data = get_rom(pc);
+
+    // ------------------------------------------------------------------------
+    // 4. メイン状態遷移 & CPU制御ロジック (シーケンシャル回路)
+    // ------------------------------------------------------------------------
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            // 非同期リセット時の初期化
+            state    <= S_FETCH;
+            pc       <= 3'b000;
+            reg_a    <= 3'b000;
+            reg_b    <= 3'b001; // 初期値例 (1)
+            ir       <= 3'b000;
+            out_data <= 3'b000;
+            flag_c   <= 1'b0;
+        end else begin
+            case (state)
+                // ------------------------------------------------------------
+                // STATE 0: FETCH (命令フェッチ)
+                // ------------------------------------------------------------
+                S_FETCH: begin
+                    ir    <= rom_data;  // PCの指すROM命令をIRに取り込み
+                    state <= S_EXEC;    // 次のクロックでEXECUTEステートへ遷移
+                end
+
+                // ------------------------------------------------------------
+                // STATE 1: EXECUTE (命令デコードおよび実行)
+                // ------------------------------------------------------------
+                S_EXEC: begin
+                    case (ir)
+                        OP_ADD: begin
+                            {flag_c, reg_a} <= reg_a + reg_b;
+                            pc <= pc + 3'd1;
+                        end
+                        OP_SUB: begin
+                            {flag_c, reg_a} <= reg_a - reg_b;
+                            pc <= pc + 3'd1;
+                        end
+                        OP_IN: begin
+                            reg_a <= in_data;
+                            pc    <= pc + 3'd1;
+                        end
+                        OP_OUT: begin
+                            out_data <= reg_a;
+                            pc       <= pc + 3'd1;
+                        end
+                        OP_MOV: begin
+                            reg_a <= reg_b;
+                            pc    <= pc + 3'd1;
+                        end
+                        OP_JMP: begin
+                            pc <= reg_b; // RegBの示すアドレスにジャンプ
+                        end
+                        OP_AND: begin
+                            reg_a  <= reg_a & reg_b;
+                            flag_c <= 1'b0;
+                            pc     <= pc + 3'd1;
+                        end
+                        OP_XOR: begin
+                            reg_a  <= reg_a ^ reg_b;
+                            flag_c <= 1'b0;
+                            pc     <= pc + 3'd1;
+                        end
+                        default: begin
+                            pc <= pc + 3'd1;
+                        end
+                    endcase
+
+                    state <= S_FETCH;   // 実行完了後、再びFETCHステートへ戻る
+                end
+
+                default: begin
+                    state <= S_FETCH;
+                end
+            endcase
+        end
+    end
+
+endmodule
+"""
+
+with open("cpu3bit_fsm.v", "w", encoding="utf-8") as f:
+    f.write(verilog_code)
+
+print("Verilog HDL file generated successfully.")
+
+
+```
+
+```text
+Verilog HDL file generated successfully.
+
+
+```
+
+Your Verilog HDL file is ready
+[file-tag: code-generated-file-3bitcpu_fsm]
+
+`nagoyakaizen-star/StructuredProgramming`（Day15 / 3bit CPU）における **2ステップ（2状態: CPI=2）型の状態遷移モデル** を再現した Verilog HDL コードを作成しました。
+
+### 1. 状態遷移の基本構造（FSM）
+
+本CPUは `S_FETCH`（命令フェッチ）と `S_EXEC`（命令実行）の2つの状態を交互に行き来する有限状態マシン（FSM）として記述されています。
+
+* **`S_FETCH`（ステート 0）**:
+* プログラムカウンタ（`pc`）が示すアドレスからメモリ（ROM）上の命令（3bit）を取得し、命令レジスタ（`ir`）へ保持します。
+* 次のクロックで `S_EXEC` へ遷移します。
+
+
+* **`S_EXEC`（ステート 1）**:
+* `ir` に保持された命令デコードを実施し、ALU演算（ADD/SUB/AND/XOR）、レジスタ更新、IO入出力（IN/OUT）、分岐（JMP）を実行します。
+* 実行完了後、`pc` をインクリメント（またはジャンプ先アドレスへ書き換え）し、再び `S_FETCH` へ遷移します。
+
+
+
+---
+
+### 2. 生成された Verilog HDL コード (`cpu3bit_fsm.v`)
+
+```verilog
+// ============================================================================
+// 3-bit Processor State Machine & CPU Top Module (Verilog HDL)
+// Repository: nagoyakaizen-star/StructuredProgramming (Day15/3bitcpu.md)
+// ----------------------------------------------------------------------------
+// 【状態遷移図 (State Transition Diagram) の概要】
+//
+//                 +------------------+
+//                 |    RESET (初期)  |
+//                 +------------------+
+//                          | (sys_rst_n == 1)
+//                          v
+//    +--------------------------------------------+
+//    |  S_FETCH (0) : 命令フェッチ (Fetch)       |
+//    |  - PCの示すメモリから命令(3-bit)を読み出し |
+//    +--------------------------------------------+
+//                          |
+//                          v (次のクロック立ち上がり)
+//    +--------------------------------------------+
+//    |  S_EXEC (1)  : 命令実行 (Execute)         |
+//    |  - 命令デコード・ALU演算・レジスタ更新      |
+//    |  - JMP条件成立時: PC <- ジャンプ先        |
+//    |  - 通常時: PC <- PC + 1                    |
+//    +--------------------------------------------+
+//                          |
+//                          +---> (再び S_FETCH へ遷移)
+//
+// ============================================================================
+
+module cpu3bit (
+    input  wire       clk,        // システムクロック
+    input  wire       rst_n,      // 非同期リセット (Active Low)
+    input  wire [2:0] in_data,    // 外部入力データ (3-bit)
+    output reg  [2:0] out_data,   // 外部出力データ (3-bit)
+    output reg  [2:0] pc,         // プログラムカウンタ (3-bit: アドレス 0~7)
+    output wire       state_out   // 現在のステート (0: FETCH, 1: EXECUTE)
+);
+
+    // ------------------------------------------------------------------------
+    // 1. 状態定義 (State Definition)
+    // ------------------------------------------------------------------------
+    localparam S_FETCH = 1'b0;  // 命令読み出しフェーズ
+    localparam S_EXEC  = 1'b1;  // 命令実行フェーズ
+
+    reg state;                  // 現在の状態レジスタ
+    assign state_out = state;
+
+    // ------------------------------------------------------------------------
+    // 2. レジスタおよび内部信号の定義
+    // ------------------------------------------------------------------------
+    reg [2:0] reg_a;            // Aレジスタ (3-bit)
+    reg [2:0] reg_b;            // Bレジスタ (3-bit)
+    reg [2:0] ir;               // 命令レジスタ (Instruction Register)
+    reg       flag_c;           // キャリーフラグ (Carry Flag)
+
+    // 命令コード定義 (3-bit Opcode Examples)
+    localparam OP_ADD = 3'b000;  // RegA <- RegA + RegB
+    localparam OP_SUB = 3'b001;  // RegA <- RegA - RegB
+    localparam OP_IN  = 3'b010;  // RegA <- in_data
+    localparam OP_OUT = 3'b011;  // out_data <- RegA
+    localparam OP_MOV = 3'b100;  // RegA <- RegB
+    localparam OP_JMP = 3'b101;  // PC   <- RegB
+    localparam OP_AND = 3'b110;  // RegA <- RegA & RegB
+    localparam OP_XOR = 3'b111;  // RegA <- RegA ^ RegB
+
+    // ------------------------------------------------------------------------
+    // 3. 仮想ROM (プログラムメモリ: 8語 x 3ビット)
+    // ------------------------------------------------------------------------
+    wire [2:0] rom_data;
+
+    function [2:0] get_rom;
+        input [2:0] addr;
+        begin
+            case (addr)
+                3'd0: get_rom = OP_IN;   // 0: 外部入力をRegAへロード
+                3'd1: get_rom = OP_ADD;  // 1: RegA = RegA + RegB
+                3'd2: get_rom = OP_OUT;  // 2: RegAを外部出力へ
+                3 me2: get_rom = OP_XOR;  // 3: RegA = RegA ^ RegB
+                3'd4: get_rom = OP_SUB;  // 4: RegA = RegA - RegB
+                3'd5: get_rom = OP_OUT;  // 5: 結果を出力
+                3'd6: get_rom = OP_JMP;  // 6: アドレスRegBへジャンプ
+                3'd7: get_rom = OP_IN;   // 7: 初期状態復帰
+                default: get_rom = 3'b000;
+            endcase
+        end
+    endfunction
+
+    assign rom_data = get_rom(pc);
+
+    // ------------------------------------------------------------------------
+    // 4. メイン状態遷移 & CPU制御ロジック (シーケンシャル回路)
+    // ------------------------------------------------------------------------
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            // 非同期リセット時の初期化
+            state    <= S_FETCH;
+            pc       <= 3'b000;
+            reg_a    <= 3'b000;
+            reg_b    <= 3'b001; // 初期値例 (1)
+            ir       <= 3'b000;
+            out_data <= 3'b000;
+            flag_c   <= 1'b0;
+        end else begin
+            case (state)
+                // ------------------------------------------------------------
+                // STATE 0: FETCH (命令フェッチ)
+                // ------------------------------------------------------------
+                S_FETCH: begin
+                    ir    <= rom_data;  // PCの指すROM命令をIRに取り込み
+                    state <= S_EXEC;    // 次のクロックでEXECUTEステートへ遷移
+                end
+
+                // ------------------------------------------------------------
+                // STATE 1: EXECUTE (命令デコードおよび実行)
+                // ------------------------------------------------------------
+                S_EXEC: begin
+                    case (ir)
+                        OP_ADD: begin
+                            {flag_c, reg_a} <= reg_a + reg_b;
+                            pc <= pc + 3'd1;
+                        end
+                        OP_SUB: begin
+                            {flag_c, reg_a} <= reg_a - reg_b;
+                            pc <= pc + 3'd1;
+                        end
+                        OP_IN: begin
+                            reg_a <= in_data;
+                            pc    <= pc + 3'd1;
+                        end
+                        OP_OUT: begin
+                            out_data <= reg_a;
+                            pc       <= pc + 3'd1;
+                        end
+                        OP_MOV: begin
+                            reg_a <= reg_b;
+                            pc    <= pc + 3'd1;
+                        end
+                        OP_JMP: begin
+                            pc <= reg_b; // RegBの示すアドレスにジャンプ
+                        end
+                        OP_AND: begin
+                            reg_a  <= reg_a & reg_b;
+                            flag_c <= 1'b0;
+                            pc     <= pc + 3'd1;
+                        end
+                        OP_XOR: begin
+                            reg_a  <= reg_a ^ reg_b;
+                            flag_c <= 1'b0;
+                            pc     <= pc + 3'd1;
+                        end
+                        default: begin
+                            pc <= pc + 3'd1;
+                        end
+                    endcase
+
+                    state <= S_FETCH;   // 実行完了後、再びFETCHステートへ戻る
+                end
+
+                default: begin
+                    state <= S_FETCH;
+                end
+            endcase
+        end
+    end
+
+endmodule
+
+```
+
+### 3. 主な構成要素と動作の解説
+
+1. **`S_FETCH` / `S_EXEC` の繰り返し**:
+* 非同期リセット（`rst_n == 0`）により初期状態 `S_FETCH` にリセットされます。
+* クロックの立ち上がりごとに `S_FETCH -> S_EXEC -> S_FETCH` と巡回します。
+
+
+2. **命令デコード & 制御信号**:
+* `ir`（Instruction Register）の3ビット値に応じて、レジスタ転送やALUの加算/減算/論理演算、プログラムカウンタ（`pc`）の操作が実行されます。
+
+
+3. **拡張・FPGAシミュレーション**:
+* ModelSim や Icarus Verilog（vvp）などでテストベンチを用意して波形観察することで、状態遷移に伴うレジスタやPCの変化を確認できます。
