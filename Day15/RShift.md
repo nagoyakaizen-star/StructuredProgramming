@@ -23,3 +23,6 @@ underflag0 --> underflag1: Rshift
 underflag1 --> underflag0: clear
 @enduml
 ```plantuml
+
+<img width="325" height="517" alt="image" src="https://github.com/user-attachments/assets/e259fe79-ddd5-43be-9c46-8a50cf29bb19" />
+
