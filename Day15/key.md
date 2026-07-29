@@ -468,3 +468,13 @@ testbench.sv:200: error: Module smart_lock_cpu4bit was already declared here: de
 Exit code expected: 0, received: 6
 Done
 ```
+
+## error2
+```errror
+[2026-07-29 01:57:24 UTC] iverilog '-Wall' '-g2012' design.sv testbench.sv  && unbuffer vvp a.out  
+testbench.sv:10: warning: timescale for smart_lock_cpu4bit inherited from another file.
+design.sv:1: ...: The inherited timescale is here.
+testbench.sv:80: syntax error
+testbench.sv:80: error: Malformed statement
+Exit code expected: 0, received: 2
+```
